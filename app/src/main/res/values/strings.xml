@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Impulse 2k18</string>
+    <string name="drive_your_pulse">Drive Your Pulse</string>
+    <string name="about_us">About Us</string>
+    <string name="rate_us_on_google_play">Rate us on Google Play</string>
+    <string name="show_your_love_for_us_in_public">Show your Love for us in public</string>
+    <string name="like_us_on_facebook">Like Us on Facebook</string>
+    <string name="don_t_worry_we_don_t_post_child_pics">Don\'t worry we don\'t post child pics</string>
+    <string name="follow_on_instagram">Follow on Instagram</string>
+    <string name="track_the_impulse">Feel the pulse</string>
+    <string name="follow_on_twitter">Follow on twitter</string>
+    <string name="we_post_humours_and_witty_tweets">We post humours and witty tweets</string>
+    <string name="description">Description :</string>
+    <string name="rules">Rules :</string>
+    <string name="registration_fee">Registration Fee:</string>
+    <string name="prize">Prize :</string>
+    <string name="venue">Venue :</string>
+    <string name="coordinator">Coordinator :</string>
+    <string name="register_now">Register Now</string>
+    <string name="registration_details">Registration Details</string>
+    <string name="read_code_of_conduct">READ Code of Conduct</string>
+    <string name="drive_your_impulse">Drive your Impulse</string>
+    <string name="you_got_it_right">You got it Right!</string>
+
+
+</resources>

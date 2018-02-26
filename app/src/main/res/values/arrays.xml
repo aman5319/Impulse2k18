@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="countries">
+        <item>Event</item>
+        <item>Location</item>
+        <item>About Us</item>
+        <item>Developer Info</item>
+        <item>Impulse Feed</item>
+        <item>Rules and Details</item>
+    </string-array>
+
+    <integer-array name="images">
+        <item>@drawable/coding</item>
+        <item>@drawable/dance</item>
+        <item>@drawable/about_bubble</item>
+        <item>@drawable/debate</item>
+        <item>@drawable/game</item>
+        <item>@drawable/game</item>
+    </integer-array>
+
+    <integer-array name="colors">
+        <item>@color/picker</item>
+        <item>@color/picker1</item>
+        <item>@color/picker</item>
+        <item>@color/picker1</item>
+        <item>@color/picker</item>
+        <item>@color/picker1</item>
+        <item>@color/picker</item>
+        <item>@color/picker1</item>
+    </integer-array>
+
+</resources>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coa"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:id="@+id/collapse"
+            app:collapsedTitleGravity="center_vertical"
+            app:collapsedTitleTextAppearance="@style/textAppe"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll">
+
+            <ImageView
+                android:transitionName="tImage"
+                android:id="@+id/image_detail"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/coding"
+                app:layout_collapseMode="parallax"
+                tools:targetApi="lollipop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/actionbar_gradient_dark" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/event_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="coding"
+                android:paddingTop="0dp"
+                app:titleTextAppearance="@style/textAppe" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                style="@style/event_details_text_head"
+                android:text="@string/description" />
+
+            <TextView
+                android:id="@+id/description_text"
+                style="@style/event_details_text_desc"
+                tools:text="This is a description text this is a dexscti[ fdsj jflsdj fsdjlfd jlsfd sfdjlksf kjflsd " />
+
+            <TextView
+                style="@style/event_details_text_head"
+                android:text="@string/rules" />
+
+            <TextView
+                android:id="@+id/rules_text"
+                style="@style/event_details_text_desc"
+                tools:text="This is a rule  text this is a dexscti[ fdsj jflsdj fsdjlfd jlsfd sfdjlksf kjflsd " />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    style="@style/event_details_text_head"
+                    android:text="@string/registration_fee" />
+
+                <TextView
+                    android:id="@+id/registration_price"
+                    style="@style/event_details_text_head"
+                    android:paddingLeft="8dp"
+                    tools:text="100rs " />
+            </LinearLayout>
+
+            <TextView
+                style="@style/event_details_text_head"
+                android:text="@string/prize" />
+
+            <TextView
+                android:id="@+id/prize"
+                style="@style/event_details_text_desc"
+                tools:text="this is a prize section" />
+
+            <TextView
+                style="@style/event_details_text_head"
+                android:text="@string/venue" />
+
+            <TextView
+                android:id="@+id/venue_detail"
+                style="@style/event_details_text_desc"
+                tools:text="this is a venue  section" />
+
+            <TextView
+                style="@style/event_details_text_head"
+                android:text="@string/coordinator" />
+
+            <TextView
+                android:id="@+id/cord1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen_regular"
+                android:paddingLeft="16dp"
+                android:textSize="16sp"
+                tools:text="this is a coordinator section" />
+
+            <TextView
+                android:id="@+id/cord2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen_regular"
+                android:paddingLeft="16dp"
+                android:textSize="16sp"
+                tools:text="this is a coordinator section" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/register_now"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="#e6657d"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/oxygen_bold"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@string/register_now"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
