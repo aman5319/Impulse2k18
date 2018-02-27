@@ -1,14 +1,10 @@
 package com.amidezcod.impulse2k18.activity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 
 import com.amidezcod.impulse2k18.adapter.ViewPagerAdapterAbout;
@@ -60,21 +56,6 @@ public class AboutActivity extends AppCompatActivity {
 
                 }
             });
-            try {
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.blur);
-                Palette.from(bitmap).generate(palette -> {
-
-                    int vibrantColor = palette.getVibrantColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                    int vibrantDarkColor = palette.getDarkVibrantColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-                    collapsingToolbarLayout.setContentScrimColor(vibrantColor);
-                    collapsingToolbarLayout.setStatusBarScrimColor(vibrantDarkColor);
-                });
-
-            } catch (Exception e) {
-                // if Bitmap fetch fails, fallback to primary colors
-                collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                collapsingToolbarLayout.setStatusBarScrimColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-            }
         }
     }
 

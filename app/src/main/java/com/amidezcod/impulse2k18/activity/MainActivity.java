@@ -10,15 +10,12 @@ import android.widget.TextView;
 import com.amidezcod.impulse2k18.adapter.CardPagerAdapter;
 import com.amidezcod.impulse2k18.adapter.ShadowTransformer;
 import com.amidezcod.impulse2k18.modal.DataForEvents;
+
 import impulse2k18.R;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private ViewPager mViewPager;
-
-    private CardPagerAdapter mCardAdapter;
-    private ShadowTransformer mCardShadowTransformer;
     public TextView toolbarText;
 
 
@@ -26,15 +23,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewPager = findViewById(R.id.viewPager);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        ViewPager mViewPager = findViewById(R.id.viewPager);
         LinearLayout linearLayout = findViewById(R.id.layout);
         toolbarText = findViewById(R.id.toolbar_text);
-        mCardAdapter = new CardPagerAdapter(MainActivity.this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        CardPagerAdapter mCardAdapter = new CardPagerAdapter(MainActivity.this);
+
         mCardAdapter = DataForEvents.enterData(mCardAdapter);
 
-        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter, linearLayout, toolbarText );
+        ShadowTransformer mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter, linearLayout, toolbarText);
 
         mViewPager.setAdapter(mCardAdapter);
         mViewPager.setPageTransformer(false, mCardShadowTransformer);

@@ -50,10 +50,6 @@ public class DataForEvents {
 
         mCardAdapter.addCardItem(
                 new CardItem(R.drawable.start_of_impulse, "#Buzzinga", "Star of the Impulse", eventDetailsInfo));
-        mCardAdapter.addCardItem(
-                new CardItem(R.drawable.start_of_impulse, "#Buzzinga", "Star of Impulse", eventDetailsInfo));
-        mCardAdapter.addCardItem(
-                new CardItem(R.drawable.start_of_impulse, "#Buzzinga", "Star of Impulse", eventDetailsInfo));
         return mCardAdapter;
     }
 }

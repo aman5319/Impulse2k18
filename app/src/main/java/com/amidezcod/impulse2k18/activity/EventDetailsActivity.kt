@@ -35,6 +35,9 @@ class EventDetailsActivity : AppCompatActivity() {
         venue_detail.text = parcel.venue
         cord1.text = parcel.coordinator[0]
         cord2.text = parcel.coordinator[1]
+        cord1.setOnClickListener({ dialPhone(getNumber(cord1.text)) })
+        cord2.setOnClickListener({ dialPhone(getNumber(cord2.text)) })
+
         register_url = parcel.url
         image_detail.setImageResource(imageId)
         collapse.title = text
@@ -64,5 +67,18 @@ class EventDetailsActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    fun dialPhone(phoneNo: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:" + phoneNo)
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
+    }
+
+    fun getNumber(chharSequence: CharSequence): String {
+        return "+" + chharSequence.toString()
+                .substringAfter("+", "323")
     }
 }

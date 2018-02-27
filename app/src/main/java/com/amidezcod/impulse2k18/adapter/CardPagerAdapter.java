@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
@@ -17,11 +18,11 @@ import android.widget.TextView;
 import com.amidezcod.impulse2k18.activity.EventDetailsActivity;
 import com.amidezcod.impulse2k18.activity.MainActivity;
 import com.amidezcod.impulse2k18.modal.CardItem;
-import impulse2k18.R;
-
 
 import java.util.ArrayList;
 import java.util.List;
+
+import impulse2k18.R;
 
 public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
@@ -67,9 +68,18 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        if (position == 12 || position == 13) {
-            return null;
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        if (position == 12) {
+            View view1 =  LayoutInflater.from(container.getContext())
+                    .inflate(R.layout.event_layout_feedback, container, false);
+            container.addView(view1);
+            return view1;
+
+        }
+        if (position == 13) {
+            return LayoutInflater.from(container.getContext())
+                    .inflate(R.layout.event_layout_feedback, container, false);
+
         }
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.adapter, container, false);

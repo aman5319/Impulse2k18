@@ -19,14 +19,14 @@
     </integer-array>
 
     <integer-array name="colors">
-        <item>@color/picker</item>
-        <item>@color/picker1</item>
-        <item>@color/picker</item>
-        <item>@color/picker1</item>
-        <item>@color/picker</item>
-        <item>@color/picker1</item>
-        <item>@color/picker</item>
-        <item>@color/picker1</item>
+        <item>@color/bubble1</item>
+        <item>@color/bubble</item>
+        <item>@color/bubble1</item>
+        <item>@color/bubble</item>
+        <item>@color/bubble1</item>
+        <item>@color/bubble</item>
+        <item>@color/bubble1</item>
+        <item>@color/bubble</item>
     </integer-array>
 
 </resources>

@@ -107,12 +107,12 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
 
         mLastOffset = positionOffset;
         Log.v("TAG", String.valueOf(position));
-        backgroundColor(position);
+        backgroundColor(0);
     }
 
     @Override
     public void onPageSelected(int position) {
-
+backgroundColor(position);
     }
 
     @Override

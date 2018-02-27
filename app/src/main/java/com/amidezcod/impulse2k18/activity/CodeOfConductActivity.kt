@@ -10,8 +10,5 @@ class CodeOfConductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code_of_conduct)
-        pdfView.fromAsset("code_of_conduct.pdf")
-                .defaultPage(0)
-                .load()
     }
 }

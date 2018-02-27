@@ -16,6 +16,7 @@
             android:id="@+id/htab_collapse_toolbar"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+           app:contentScrim="@color/colorAccent"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:titleEnabled="false">
@@ -67,8 +68,8 @@
                 android:layout_gravity="bottom"
                 app:tabIndicatorColor="@android:color/white"
                 app:tabMode="scrollable"
-                app:tabSelectedTextColor="@color/colorPrimaryDark"
-                app:tabTextColor="@color/colorAccent" />
+                app:tabSelectedTextColor="#fff"
+                app:tabTextColor="@color/colorPrimaryDark" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
