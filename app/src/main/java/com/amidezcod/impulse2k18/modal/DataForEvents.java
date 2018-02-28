@@ -1,6 +1,9 @@
 package com.amidezcod.impulse2k18.modal;
 
 import com.amidezcod.impulse2k18.adapter.CardPagerAdapter;
+
+import java.util.ArrayList;
+
 import impulse2k18.R;
 
 /**
@@ -16,7 +19,7 @@ public class DataForEvents {
                         "   b. Problems of varying complexity will be given for coding. \n\t " +
                         "\tc. Judges decision will be final."
                 , "100", "Cash Prize \n Certificate", "3rd Floor CSE Dept ",
-                new String[]{"Aman pandey +9121" , "Ram Poudel +213"}, "http://impulse2k18.tk/register.html#coding");
+                new String[]{"Aman pandey +9121", "Ram Poudel +213"}, "http://impulse2k18.tk/register.html#coding");
 
 
         mCardAdapter.addCardItem(
@@ -51,5 +54,23 @@ public class DataForEvents {
         mCardAdapter.addCardItem(
                 new CardItem(R.drawable.start_of_impulse, "#Buzzinga", "Star of the Impulse", eventDetailsInfo));
         return mCardAdapter;
+    }
+
+    public static ArrayList<DeveloperModal> data() {
+        ArrayList<DeveloperModal> developerModals = new ArrayList<>();
+        developerModals.add(new DeveloperModal("Sarath", "Designer", "", "8884500811"));
+        developerModals.add(new DeveloperModal("Rajdeep", "Designer", "", "7892637373"));
+        developerModals.add(new DeveloperModal("Prajwal Y", "Designer", "", "9481719233"));
+        developerModals.add(new DeveloperModal("Prajwal ks", "Designer", "", "9482942988"));
+        developerModals.add(new DeveloperModal("Rijo John", "Designer", "", "7406467409"));
+        developerModals.add(new DeveloperModal("Nitin", "Designer", "", "8892086884"));
+        developerModals.add(new DeveloperModal("Prashant", "Designer", "", "9742825867"));
+        developerModals.add(new DeveloperModal("Kiran K", "Developer & Designer", "https://www.github.com/keepcalmncode", ""));
+        developerModals.add(new DeveloperModal("Ram", "Developer & Designer", "https://www.github.com/raam97", ""));
+        developerModals.add(new DeveloperModal("Rahul", "Developer", "https://www.github.com/rahuljain5", ""));
+        developerModals.add(new DeveloperModal("Uddipta", "Developer", "https://www.github.com/udipta", ""));
+        developerModals.add(new DeveloperModal("Aman", "Developer", "https://www.github.com/aman5319", ""));
+
+        return developerModals;
     }
 }

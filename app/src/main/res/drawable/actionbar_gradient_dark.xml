@@ -8,3 +8,4 @@
         android:centerColor="#00000000"/>
     <corners android:radius="0dp" />
 </shape>
+

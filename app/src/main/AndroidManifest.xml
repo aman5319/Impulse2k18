@@ -11,8 +11,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.amidezcod.impulse2k18.activity.MainActivity"
-            android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"/>
+        <activity
+            android:name="com.amidezcod.impulse2k18.activity.MainActivity"
+            android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity" />
         <activity
             android:name="com.amidezcod.impulse2k18.activity.AboutActivity"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity" />
@@ -22,13 +23,7 @@
         <activity
             android:name="com.amidezcod.impulse2k18.activity.RegisterActivity"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.EventDetailsActivity" />
-        <activity android:name="com.amidezcod.impulse2k18.activity.BubblePickerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="com.amidezcod.impulse2k18.activity.BubblePickerActivity" />
         <activity
             android:name="com.amidezcod.impulse2k18.activity.RulesActivity"
             android:label="Rules"
@@ -39,6 +34,21 @@
             android:label="Code Of Conduct"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.RulesActivity"
             android:theme="@style/withToolbar" />
+        <activity
+            android:name="com.amidezcod.impulse2k18.activity.SplashScreen"
+            android:noHistory="true"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/withToolbar"
+            android:name="com.amidezcod.impulse2k18.activity.DeveloperActivity"
+            android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
+            />
     </application>
 
 </manifest>

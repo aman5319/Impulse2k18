@@ -57,7 +57,7 @@ class BubblePickerActivity : AppCompatActivity() {
                     "Event" -> respondToIntent(Intent(this@BubblePickerActivity, MainActivity::class.java))
                     "Location" -> respondToIntent(intentToMaps())
                     "Developer Info" -> {
-
+                        respondToIntent(Intent(this@BubblePickerActivity, DeveloperActivity::class.java))
                     }
                     "Rules and Details" -> {
                         respondToIntent(Intent(this@BubblePickerActivity, RulesActivity::class.java))
@@ -102,5 +102,10 @@ class BubblePickerActivity : AppCompatActivity() {
         Handler().postDelayed({
             startActivity(intent)
         }, 250)
+    }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        finish()
     }
 }

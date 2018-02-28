@@ -19,6 +19,7 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
     private boolean mScalingEnabled;
     LinearLayout linearLayout;
     TextView toolbar_text;
+    boolean showfirst = true;
 
     public ShadowTransformer(ViewPager viewPager, CardAdapter adapter, LinearLayout linearLayout, TextView toolbar_text) {
         mViewPager = viewPager;
@@ -107,12 +108,17 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
 
         mLastOffset = positionOffset;
         Log.v("TAG", String.valueOf(position));
-        backgroundColor(0);
+        if (position == 0 && showfirst) {
+            showfirst = false;
+            linearLayout.setBackground(ContextCompat.getDrawable(linearLayout.getContext(), R.drawable.coding_grad));
+            toolbar_text.setText("#WebDesign");
+
+        }
     }
 
     @Override
     public void onPageSelected(int position) {
-backgroundColor(position);
+        backgroundColor(position);
     }
 
     @Override

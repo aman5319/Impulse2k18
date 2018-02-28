@@ -52,7 +52,7 @@
             android:layout_height="1dp"
             android:background="#4d4b4b" />
 
-        icon_facebook-->
+        <!--icon_facebook-->
 
         <LinearLayout
             android:id="@+id/facebook"
