@@ -45,10 +45,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/withToolbar"
             android:name="com.amidezcod.impulse2k18.activity.DeveloperActivity"
+            android:label="Developer Info"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
-            />
+            android:theme="@style/withToolbar" />
+        <activity
+            android:name="com.amidezcod.impulse2k18.activity.FeedActivity"
+            android:label="Action Wall"
+            android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
+            android:theme="@style/withToolbar" />
     </application>
 
 </manifest>

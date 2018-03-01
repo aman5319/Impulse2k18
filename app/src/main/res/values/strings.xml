@@ -20,11 +20,12 @@
     <string name="registration_details">Registration Details</string>
     <string name="read_code_of_conduct">READ Code of Conduct</string>
     <string name="drive_your_impulse">Drive your Impulse</string>
-    <string name="you_got_it_right">You got it Right!</string>
+    <string name="you_got_it_right">You Got It Right !!</string>
     <string name="watch_impulse_videos">Watch Impulse videos</string>
     <string name="we_post_awesome_videos">We Post Awesome Videos</string>
     <string name="send_us_a_mail">Send us a mail</string>
     <string name="don_t_worry_we_gonna_reply">Don\'t worry we gonna reply</string>
+    <string name="get_access">Get Access</string>
 
 
 </resources>

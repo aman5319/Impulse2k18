@@ -1,6 +1,7 @@
 package com.amidezcod.impulse2k18.activity
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.Intent.ACTION_DIAL
 import android.content.Intent.ACTION_VIEW
@@ -13,10 +14,16 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.EditText
+import android.widget.Toast
 import com.amidezcod.impulse2k18.adapter.DeveloperAdapter
 import com.amidezcod.impulse2k18.modal.DataForEvents
 import com.amidezcod.impulse2k18.modal.DeveloperModal
@@ -25,11 +32,18 @@ import kotlinx.android.synthetic.main.activity_developer.*
 
 
 class DeveloperActivity : AppCompatActivity() {
+    companion object {
+        const val AUTHENTICATION_PASSWORD = "D0p3d@#"
+        const val DEVELOPER_AUTH_FILE = "develop"
+        const val AUTHENTICATED_BOOL = "auth"
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_developer)
         setupRecyclerView()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         //handles the item Swipe Drag Drop event
         itemDecorate()
     }
@@ -122,6 +136,56 @@ class DeveloperActivity : AppCompatActivity() {
         recycler_view_developer?.setHasFixedSize(true)
         recycler_view_developer?.adapter = DeveloperAdapter(DataForEvents.data())
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        if (!getSharedPreferences(DEVELOPER_AUTH_FILE, Context.MODE_PRIVATE).getBoolean(AUTHENTICATED_BOOL, false)) {
+            menuInflater.inflate(R.menu.developer_menu, menu)
+            return true
+        }
+        return false
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.authenticate -> {
+                authenticateDialog()
+            }
+        }
+        return true
+    }
+
+
+    fun authenticateDialog() {
+        val editText = EditText(applicationContext)
+        AlertDialog.Builder(this@DeveloperActivity)
+                .setTitle("Authenticate yourself")
+                .setMessage("Enter the Coordinater passKey")
+                .setView(editText)
+                .setPositiveButton("Verify", { dialogInterface: DialogInterface, i: Int ->
+                    if (editText.text.toString() == AUTHENTICATION_PASSWORD) {
+                        val sharedPreferences = getSharedPreferences(DEVELOPER_AUTH_FILE, Context.MODE_PRIVATE)
+                        sharedPreferences
+                                .edit()
+                                .putBoolean(AUTHENTICATED_BOOL, true)
+                                .apply()
+                        dialogInterface.dismiss()
+                        toast("Password verified!! Access Granted ")
+                        invalidateOptionsMenu()
+                    } else {
+                        toast("Hmm your are smart but not today...")
+                    }
+                })
+                .setNegativeButton("cancel", { dialog, _ -> dialog.dismiss() })
+                .setCancelable(true)
+                .show()
+
+    }
+
+    fun toast(text: String) {
+        Toast.makeText(this@DeveloperActivity, text, Toast.LENGTH_LONG).show()
+    }
+
 }
 
 

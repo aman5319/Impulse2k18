@@ -7,6 +7,12 @@
     <color name="picker1">#fa6775</color>
 
 
-    <color name="bubble">#da5e3c</color>
-    <color name="bubble1">#da5e3c</color>
+    <color name="bubble0">#00aeef</color>
+    <color name="bubble1">#3cd878</color>
+    <color name="bubble2">#ed1c24</color>
+    <color name="bubble3">#4b0049</color>
+    <color name="bubble4">#00aeef</color>
+    <color name="bubble5">#3cd878</color>
+    <color name="bubble6">#ed1c24</color>
+    <color name="bubble7">#4b0049</color>
 </resources>

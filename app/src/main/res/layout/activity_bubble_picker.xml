@@ -1,44 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linear_layout_select"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout_select"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/my_selector"
+    android:background="@drawable/bubble_background"
     android:orientation="vertical"
     android:weightSum="10">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fontFamily="@font/sketch"
-        android:gravity="center"
-        android:letterSpacing="0.1"
-        android:text="@string/you_got_it_right"
-        android:textColor="#fff"
-        android:textSize="30sp"
-        tools:targetApi="lollipop" />
 
     <com.igalata.bubblepicker.rendering.BubblePicker
         android:id="@+id/picker"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
-        />
+        android:layout_weight="9.2" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="4dp"
-        android:layout_weight="1.3"
+        android:layout_weight="1"
+        android:background="#71000000"
         android:fontFamily="@font/bubble"
         android:gravity="center"
         android:letterSpacing="0.2"
         android:text="Impulse'18"
         android:textAllCaps="true"
-        android:textColor="@color/picker"
+        android:textColor="#fff"
         android:textSize="40sp"
         tools:targetApi="LOLLIPOP" />
 </LinearLayout>
