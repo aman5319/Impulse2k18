@@ -12,6 +12,7 @@ import android.graphics.RectF
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.NavUtils
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.app.AlertDialog
@@ -19,7 +20,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
+import android.text.InputType
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -42,8 +43,9 @@ class DeveloperActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_developer)
-        setupRecyclerView()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        setupRecyclerView()
         //handles the item Swipe Drag Drop event
         itemDecorate()
     }
@@ -134,7 +136,7 @@ class DeveloperActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         recycler_view_developer?.layoutManager = LinearLayoutManager(this@DeveloperActivity, LinearLayoutManager.VERTICAL, false)
         recycler_view_developer?.setHasFixedSize(true)
-        recycler_view_developer?.adapter = DeveloperAdapter(DataForEvents.data())
+        recycler_view_developer?.adapter = DeveloperAdapter(DataForEvents.data(), this@DeveloperActivity)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -150,19 +152,26 @@ class DeveloperActivity : AppCompatActivity() {
         when (item?.itemId) {
             R.id.authenticate -> {
                 authenticateDialog()
+                return true
+            }
+            android.R.id.home -> {
+                NavUtils.navigateUpFromSameTask(this);
+                return true
+
             }
         }
-        return true
+        return super.onOptionsItemSelected(item)
     }
-
 
     fun authenticateDialog() {
         val editText = EditText(applicationContext)
+        editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        editText.setTextColor(ContextCompat.getColor(this@DeveloperActivity, android.R.color.black))
         AlertDialog.Builder(this@DeveloperActivity)
                 .setTitle("Authenticate yourself")
                 .setMessage("Enter the Coordinater passKey")
                 .setView(editText)
-                .setPositiveButton("Verify", { dialogInterface: DialogInterface, i: Int ->
+                .setPositiveButton("Verify", { dialogInterface: DialogInterface, _: Int ->
                     if (editText.text.toString() == AUTHENTICATION_PASSWORD) {
                         val sharedPreferences = getSharedPreferences(DEVELOPER_AUTH_FILE, Context.MODE_PRIVATE)
                         sharedPreferences
@@ -182,11 +191,14 @@ class DeveloperActivity : AppCompatActivity() {
 
     }
 
-    fun toast(text: String) {
+    private fun toast(text: String) {
         Toast.makeText(this@DeveloperActivity, text, Toast.LENGTH_LONG).show()
     }
 
+
 }
+
+
 
 
 

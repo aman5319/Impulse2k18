@@ -1,6 +1,7 @@
 package com.amidezcod.impulse2k18.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,8 @@ import impulse2k18.R;
 public class AboutActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private CollapsingToolbarLayout collapsingToolbarLayout;
+    private AppBarLayout appBarLayout;
+    boolean onlyOneTime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class AboutActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar_about);
         collapsingToolbarLayout = findViewById(R.id.htab_collapse_toolbar);
+        appBarLayout = findViewById(R.id.htab_appbar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
@@ -37,6 +41,7 @@ public class AboutActivity extends AppCompatActivity {
             toolbar.setTitle("About Us");
             getSupportActionBar().setTitle("About Us");
         }
+
         if (viewPager != null) {
             setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
@@ -44,6 +49,11 @@ public class AboutActivity extends AppCompatActivity {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());
+                    if (onlyOneTime) {
+                        appBarLayout.animate().setDuration(100).start();
+                        appBarLayout.setExpanded(false, true);
+                        onlyOneTime = false;
+                    }
                 }
 
                 @Override

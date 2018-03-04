@@ -18,7 +18,7 @@
             android:layout_height="300dp"
            app:contentScrim="@color/colorAccent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
             <ImageView

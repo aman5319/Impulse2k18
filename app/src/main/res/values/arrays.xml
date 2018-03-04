@@ -5,8 +5,9 @@
         <item>Location</item>
         <item>About Us</item>
         <item>Developer Info</item>
-        <item>Impulse Feed</item>
+        <item>Action Wall</item>
         <item>Rules and Details</item>
+        <item>Schedule</item>
     </string-array>
 
     <integer-array name="images">
@@ -16,17 +17,20 @@
         <item>@drawable/debate</item>
         <item>@drawable/game</item>
         <item>@drawable/game</item>
+        <item>@drawable/game</item>
     </integer-array>
 
     <integer-array name="colors">
         <item>@color/bubble6</item>
-        <item>@color/bubble7</item>
+        <item>@color/colorPrimary</item>
         <item>@color/bubble6</item>
-        <item>@color/bubble7</item>
+        <item>@color/colorPrimary</item>
         <item>@color/bubble6</item>
-        <item>@color/bubble7</item>
+        <item>@color/colorPrimary</item>
         <item>@color/bubble6</item>
-        <item>@color/bubble7</item>
+        <item>@color/colorPrimary</item>
+        <item>@color/bubble6</item>
+        <item>@color/colorPrimary</item>
     </integer-array>
 
 </resources>

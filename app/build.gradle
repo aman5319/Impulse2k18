@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -17,7 +17,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -27,16 +27,39 @@ android {
 }
 
 dependencies {
-    compile 'com.google.firebase:firebase-database:11.8.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //firebase
+    compile 'com.google.firebase:firebase-database:11.8.0'
+    compile 'com.google.firebase:firebase-auth:11.8.0'
+    compile 'com.google.firebase:firebase-storage:11.8.0'
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    implementation 'com.firebaseui:firebase-ui-auth:3.2.2'
+
+    //support library
     implementation 'com.android.support:design:27.0.2'
     implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation 'com.android.support:recyclerview-v7:27.0.2'
     implementation 'com.android.support:cardview-v7:27.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    //bubble picker
     compile 'com.github.aman5319:BubblePicker:develop-SNAPSHOT'
+
+
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // RXJava
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    // Room
+    compile 'android.arch.persistence.room:runtime:1.0.0'
+    compile 'android.arch.persistence.room:rxjava2:1.0.0'
+    kapt "android.arch.persistence.room:compiler:1.0.0"
 }
 apply plugin: 'com.google.gms.google-services'
 

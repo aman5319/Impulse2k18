@@ -22,7 +22,11 @@
             android:parentActivityName="com.amidezcod.impulse2k18.activity.MainActivity" />
         <activity
             android:name="com.amidezcod.impulse2k18.activity.RegisterActivity"
-            android:parentActivityName="com.amidezcod.impulse2k18.activity.EventDetailsActivity" />
+            android:label="Registeration"
+            android:noHistory="true"
+            android:parentActivityName="com.amidezcod.impulse2k18.activity.EventDetailsActivity"
+            android:theme="@style/withToolbar"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.amidezcod.impulse2k18.activity.BubblePickerActivity" />
         <activity
             android:name="com.amidezcod.impulse2k18.activity.RulesActivity"
@@ -52,6 +56,11 @@
         <activity
             android:name="com.amidezcod.impulse2k18.activity.FeedActivity"
             android:label="Action Wall"
+            android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
+            android:theme="@style/withToolbar" />
+        <activity
+            android:name="com.amidezcod.impulse2k18.activity.ScheduleActivity"
+            android:label="@string/title_activity_schedule"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
             android:theme="@style/withToolbar" />
     </application>

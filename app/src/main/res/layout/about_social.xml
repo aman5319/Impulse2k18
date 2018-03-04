@@ -8,9 +8,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--google play-->
         <LinearLayout
-            android:id="@+id/play_store"
+            android:id="@+id/youtube"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -20,7 +19,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="24dp"
-                android:src="@drawable/icon_star" />
+                android:src="@drawable/icon_youtube" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/oxygen_regular"
-                    android:text="@string/rate_us_on_google_play"
+                    android:text="@string/watch_impulse_videos"
                     android:textColor="#484646"
                     android:textSize="20sp" />
 
@@ -41,17 +40,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/show_your_love_for_us_in_public"
+                    android:text="@string/we_post_awesome_videos"
                     android:textColor="#484646"
                     android:textSize="14sp" />
             </LinearLayout>
+
         </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#4d4b4b" />
-
         <!--icon_facebook-->
 
         <LinearLayout
@@ -144,7 +144,6 @@
             android:layout_height="1dp"
             android:background="#4d4b4b" />
 
-        icon_twittertter-->
 
         <LinearLayout
             android:id="@+id/twitter"
@@ -191,44 +190,6 @@
             android:layout_height="1dp"
             android:background="#4d4b4b" />
 
-        <LinearLayout
-            android:id="@+id/youtube"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="24dp"
-                android:src="@drawable/icon_youtube" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/oxygen_regular"
-                    android:text="@string/watch_impulse_videos"
-                    android:textColor="#484646"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/we_post_awesome_videos"
-                    android:textColor="#484646"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -272,6 +233,49 @@
             </LinearLayout>
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#4d4b4b" />
+
+        <LinearLayout
+            android:id="@+id/play_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="24dp"
+                android:src="@drawable/icon_star" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/oxygen_regular"
+                    android:text="@string/rate_us_on_google_play"
+                    android:textColor="#484646"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/show_your_love_for_us_in_public"
+                    android:textColor="#484646"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>

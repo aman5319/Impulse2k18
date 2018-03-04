@@ -19,7 +19,7 @@ public class DataForEvents {
                         "   b. Problems of varying complexity will be given for coding. \n\t " +
                         "\tc. Judges decision will be final."
                 , "100", "Cash Prize \n Certificate", "3rd Floor CSE Dept ",
-                new String[]{"Aman pandey +9121", "Ram Poudel +213"}, "http://impulse2k18.tk/register.html#coding");
+                new String[]{"Aman pandey +9121", "Ram Poudel +213"});
 
 
         mCardAdapter.addCardItem(

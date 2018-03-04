@@ -20,13 +20,12 @@
         android:layout_height="0dp"
         android:layout_marginBottom="4dp"
         android:layout_weight="1"
-        android:background="#71000000"
+        android:background="#30000000"
         android:fontFamily="@font/bubble"
         android:gravity="center"
-        android:letterSpacing="0.2"
-        android:text="Impulse'18"
+        android:text="@string/impulse_18"
         android:textAllCaps="true"
-        android:textColor="#fff"
-        android:textSize="40sp"
+        android:textColor="#fcfcfc"
+        android:textSize="35sp"
         tools:targetApi="LOLLIPOP" />
 </LinearLayout>

@@ -14,7 +14,7 @@ import impulse2k18.R
 /**
  * Created by amidezcod on 28/2/18.
  */
-class Feedadapter(var context: Context, var list: MutableList<FeedModal>) : RecyclerView.Adapter<Feedadapter.FeedHolder>() {
+class Feedadapter(var context: Context, private var list: MutableList<FeedModal>) : RecyclerView.Adapter<Feedadapter.FeedHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): FeedHolder {
         return FeedHolder(LayoutInflater.from(context)
                 .inflate(R.layout.item_feed, parent, false))
@@ -23,7 +23,7 @@ class Feedadapter(var context: Context, var list: MutableList<FeedModal>) : Recy
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: FeedHolder?, position: Int) {
-
+        holder?.bind(list[position])
     }
 
     inner class FeedHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,12 +31,11 @@ class Feedadapter(var context: Context, var list: MutableList<FeedModal>) : Recy
         val photoImageView = itemView.findViewById<ImageView>(R.id.photoImageView)
 
         fun bind(feedModal: FeedModal) {
-            if (photoImageView != null)
+            if (feedModal.photoUrl!!.isNotEmpty())
                 Picasso.with(context)
                         .load(feedModal.photoUrl)
                         .into(photoImageView)
-
-
+            messageTextView.text=feedModal.text
         }
     }
 }

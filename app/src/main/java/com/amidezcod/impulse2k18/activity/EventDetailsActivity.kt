@@ -1,17 +1,18 @@
 package com.amidezcod.impulse2k18.activity
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
+import android.graphics.BitmapFactory
+import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.WindowManager
+import android.widget.TextView
 import com.amidezcod.impulse2k18.adapter.CardPagerAdapter
 import com.amidezcod.impulse2k18.modal.EventDetailsInfo
 import impulse2k18.R
-
 import kotlinx.android.synthetic.main.activity_event_detail.*
 
 
@@ -25,6 +26,7 @@ class EventDetailsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val imageId = intent.getIntExtra(CardPagerAdapter.EVENT_IMAGE_INTENT, 0)
         val text = intent.getStringExtra(CardPagerAdapter.EVENT_TEXT_INTENT)
         val parcel: EventDetailsInfo = intent.getParcelableExtra<EventDetailsInfo>(CardPagerAdapter.EVENT_DETAILS_INTENT)
@@ -35,33 +37,28 @@ class EventDetailsActivity : AppCompatActivity() {
         venue_detail.text = parcel.venue
         cord1.text = parcel.coordinator[0]
         cord2.text = parcel.coordinator[1]
+
+        colorNumberAndUnderLine(cord1)
+        colorNumberAndUnderLine(cord2)
+
         cord1.setOnClickListener({ dialPhone(getNumber(cord1.text)) })
         cord2.setOnClickListener({ dialPhone(getNumber(cord2.text)) })
 
-        register_url = parcel.url
         image_detail.setImageResource(imageId)
         collapse.title = text
+
         register_now.setOnClickListener({
-            sendUrlIntent()
+            val intent = Intent(this@EventDetailsActivity, RegisterActivity::class.java)
+            intent.putExtra("EventName", text)
+            startActivity(intent)
         })
 
+
     }
 
-    fun isNetworkAvailable(): Boolean {
-        val connectivityManager: ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return networkInfo != null && networkInfo.isConnected
-    }
-
-    fun sendUrlIntent() {
-        val intent = Intent(this@EventDetailsActivity, RegisterActivity::class.java)
-        intent.data = Uri.parse(register_url)
-        if (isNetworkAvailable()) {
-            startActivity(intent)
-        } else {
-            Snackbar.make(coa, "No Internet Connection", Snackbar.LENGTH_SHORT)
-                    .setAction("Retry", { sendUrlIntent() }).show()
-        }
+    private fun colorNumberAndUnderLine(cord1: TextView) {
+        cord1.paintFlags = cord1.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        cord1.setTextColor(ContextCompat.getColor(this@EventDetailsActivity, R.color.colorPrimaryDark))
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -7,9 +7,11 @@ import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import android.widget.Toast
 import com.igalata.bubblepicker.BubblePickerListener
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter
+import com.igalata.bubblepicker.model.BubbleGradient
 import com.igalata.bubblepicker.model.PickerItem
 import impulse2k18.R
 import kotlinx.android.synthetic.main.activity_bubble_picker.*
@@ -22,11 +24,8 @@ class BubblePickerActivity : AppCompatActivity() {
         val titles = resources.getStringArray(R.array.countries)
         val colors = resources.obtainTypedArray(R.array.colors)
         val images = resources.obtainTypedArray(R.array.images)
-//        val animationDrawable: AnimationDrawable = linear_layout_select.background as AnimationDrawable
-//        animationDrawable.setEnterFadeDuration(3000)
-//        animationDrawable.setExitFadeDuration(2000)
-//        animationDrawable.start()
-
+        val w = window
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         picker.adapter = object : BubblePickerAdapter {
 
             override val totalCount = titles.size
@@ -34,9 +33,9 @@ class BubblePickerActivity : AppCompatActivity() {
             override fun getItem(position: Int): PickerItem {
                 return PickerItem().apply {
                     title = titles[position]
-                    color = colors.getColor(position, ContextCompat.getColor(this@BubblePickerActivity, R.color.colorAccent))
-//                    gradient = BubbleGradient(colors.getColor((position * 2) % 8, 0),
-//                            colors.getColor((position * 2) % 8 + 1, 0), BubbleGradient.HORIZONTAL)
+//                    color = colors.getColor(position, ContextCompat.getColor(this@BubblePickerActivity, R.color.colorAccent))
+                    gradient = BubbleGradient(colors.getColor((position * 2) % 8, 0),
+                            colors.getColor((position * 2) % 8 + 1, 0), BubbleGradient.HORIZONTAL)
                     typeface = ResourcesCompat.getFont(applicationContext, R.font.oxygen_regular)!!
                     textColor = ContextCompat.getColor(this@BubblePickerActivity, android.R.color.white)
                     backgroundImage = ContextCompat.getDrawable(this@BubblePickerActivity, images.getResourceId(position, 0))
@@ -65,8 +64,11 @@ class BubblePickerActivity : AppCompatActivity() {
                         respondToIntent(Intent(this@BubblePickerActivity, AboutActivity::class.java))
 
                     }
-                    "Impulse Feed" -> {
-
+                    "Action Wall" -> {
+                        respondToIntent(Intent(this@BubblePickerActivity, FeedActivity::class.java))
+                    }
+                    "Schedule" -> {
+                        respondToIntent(Intent(this@BubblePickerActivity, ScheduleActivity::class.java))
                     }
                 }
             }
@@ -104,7 +106,6 @@ class BubblePickerActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-//        super.onBackPressed()
         finish()
     }
 }

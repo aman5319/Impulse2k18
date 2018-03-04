@@ -15,24 +15,14 @@ public class EventDetailsInfo implements Parcelable {
     private String venue;
     private String[] coordinator;
 
-    public String getUrl() {
-        return url;
-    }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    private String url;
-
-    public EventDetailsInfo(String description, String rules, String registrationFee, String prize, String venue, String[] coordinator, String url) {
+    public EventDetailsInfo(String description, String rules, String registrationFee, String prize, String venue, String[] coordinator) {
         this.description = description;
         this.rules = rules;
         this.registrationFee = registrationFee;
         this.prize = prize;
         this.venue = venue;
         this.coordinator = coordinator;
-        this.url = url;
     }
 
     private EventDetailsInfo(Parcel in) {
@@ -42,7 +32,6 @@ public class EventDetailsInfo implements Parcelable {
         prize = in.readString();
         venue = in.readString();
         coordinator = in.createStringArray();
-        url = in.readString();
     }
 
     public String getDescription() {
@@ -121,7 +110,6 @@ public class EventDetailsInfo implements Parcelable {
         dest.writeString(prize);
         dest.writeString(venue);
         dest.writeStringArray(coordinator);
-        dest.writeString(url);
 
     }
 }
