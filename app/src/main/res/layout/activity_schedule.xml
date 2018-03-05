@@ -7,5 +7,10 @@
     tools:context="com.amidezcod.impulse2k18.activity.ScheduleActivity">
 
 
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="Coming Soon..."
+    android:gravity="center"
+    android:textSize="30sp"/>
 </LinearLayout>

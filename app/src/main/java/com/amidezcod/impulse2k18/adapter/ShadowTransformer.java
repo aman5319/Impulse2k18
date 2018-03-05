@@ -111,7 +111,7 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
         if (position == 0 && showfirst) {
             showfirst = false;
             linearLayout.setBackground(ContextCompat.getDrawable(linearLayout.getContext(), R.drawable.coding_grad));
-            toolbar_text.setText("#WebDesign");
+            toolbar_text.setText("#Gaming");
 
         }
     }
@@ -132,51 +132,83 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
         switch (position) {
             case 0:
                 color = R.drawable.coding_grad;
-                text = "#WebDesign";
+                text = "#Gaming";
                 break;
             case 1:
                 color = R.drawable.debate_grad;
-                text = "#Coding";
+                text = "#NammaBhaseKannada";
                 break;
             case 2:
                 color = R.drawable.entertainment_grad;
-                text = "#Debate";
+                text = "#StarOfImpulse";
                 break;
             case 3:
-                color = R.drawable.web_grad;
-                text = "#EntertainmentQuiz";
+                color = R.drawable.debate_grad;
+                text = "#HotWheels";
                 break;
             case 4:
-                color = R.drawable.debate_grad;
-                text = "#FootLoose";
+                color = R.drawable.web_grad;
+                text = "#OxfordRoadies";
                 break;
             case 5:
-                color = R.drawable.coding_grad;
-                text = "#Gaming";
+                color = R.drawable.debate_grad;
+                text = "#MockPress";
                 break;
             case 6:
-                color = R.drawable.entertainment_grad;
-                text = "#ITQuiz";
+                color = R.drawable.coding_grad;
+                text = "#Un-KnowIT";
                 break;
             case 7:
-                color = R.drawable.debate_grad;
-                text = "#NammaKannada";
+                color = R.drawable.entertainment_grad;
+                text = "#PaperPlane";
                 break;
             case 8:
-                color = R.drawable.web_grad;
-                text = "#MovieMaking";
+                color = R.drawable.debate_grad;
+                text = "#DevilSegue";
                 break;
             case 9:
-                color = R.drawable.coding_grad;
-                text = "#Photography";
+                color = R.drawable.web_grad;
+                text = "#Roboventure";
                 break;
             case 10:
-                color = R.drawable.entertainment_grad;
-                text = "#TreasureHunt";
+                color = R.drawable.coding_grad;
+                text = "#GearUp";
                 break;
             case 11:
+                color = R.drawable.entertainment_grad;
+                text = "#PicturesQue";
+                break;
+            case 12:
                 color = R.drawable.debate_grad;
-                text = "#Buzzinga";
+                text = "#Montage";
+                break;
+            case 13:
+                color = R.drawable.web_grad;
+                text = "#Construct";
+                break;
+            case 14:
+                color = R.drawable.entertainment_grad;
+                text = "#RollCameraAction";
+                break;
+            case 15:
+                color = R.drawable.coding_grad;
+                text = "#TechnoVation";
+                break;
+            case 16:
+                color = R.drawable.web_grad;
+                text = "#WheelsOnFire";
+                break;
+            case 17:
+                color = R.drawable.entertainment_grad;
+                text = "#Techno-Opus";
+                break;
+            case 18:
+                color = R.drawable.coding_grad;
+                text = "#WebDesign";
+                break;
+            case 19:
+                color = R.drawable.web_grad;
+                text = "#TreasureHunt";
                 break;
             default:
                 color = R.drawable.web_grad;

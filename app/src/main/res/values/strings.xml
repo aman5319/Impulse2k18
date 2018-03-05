@@ -33,6 +33,9 @@
     <string name="title_activity_schedule">ScheduleActivity</string>
     <string name="profile">Profile</string>
     <string name="impulse_18">Impulse\' 18</string>
+    <string name="github">Github</string>
+    <string name="the_oxford_college_of_engineering_bommanahalli_hosur_road_bangalore_560068">The Oxford College Of Engineering \nBommanahalli, Hosur Road Bangalore - 560068</string>
+    <string name="visit_our_website">Visit our Website</string>
 
 
 </resources>

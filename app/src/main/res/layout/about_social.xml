@@ -190,10 +190,7 @@
             android:layout_height="1dp"
             android:background="#4d4b4b" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#4d4b4b" />
+
 
         <LinearLayout
             android:id="@+id/gmail"
@@ -276,6 +273,44 @@
             </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#4d4b4b" />
 
+        <LinearLayout
+            android:id="@+id/web_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="24dp"
+                android:src="@drawable/web" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/oxygen_regular"
+                    android:text="@string/visit_our_website"
+                    android:textColor="#484646"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#4d4b4b" />
     </LinearLayout>
 </ScrollView>

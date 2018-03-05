@@ -10,6 +10,7 @@
         android:icon="@mipmap/impulse_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name="com.amidezcod.impulse2k18.activity.MainActivity"
@@ -32,11 +33,6 @@
             android:name="com.amidezcod.impulse2k18.activity.RulesActivity"
             android:label="Rules"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
-            android:theme="@style/withToolbar" />
-        <activity
-            android:name="com.amidezcod.impulse2k18.activity.CodeOfConductActivity"
-            android:label="Code Of Conduct"
-            android:parentActivityName="com.amidezcod.impulse2k18.activity.RulesActivity"
             android:theme="@style/withToolbar" />
         <activity
             android:name="com.amidezcod.impulse2k18.activity.SplashScreen"
@@ -63,6 +59,7 @@
             android:label="@string/title_activity_schedule"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
             android:theme="@style/withToolbar" />
+        <activity android:name="com.amidezcod.impulse2k18.activity.LocationActivity"></activity>
     </application>
 
 </manifest>

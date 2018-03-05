@@ -157,7 +157,10 @@ class DeveloperActivity : AppCompatActivity() {
             android.R.id.home -> {
                 NavUtils.navigateUpFromSameTask(this);
                 return true
-
+            }
+            R.id.github -> {
+                Toast.makeText(this@DeveloperActivity, "Fork Our project", Toast.LENGTH_LONG).show()
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.github.com")))
             }
         }
         return super.onOptionsItemSelected(item)

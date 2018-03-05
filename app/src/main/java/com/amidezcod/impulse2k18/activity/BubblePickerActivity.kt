@@ -1,7 +1,6 @@
 package com.amidezcod.impulse2k18.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.content.ContextCompat
@@ -25,7 +24,7 @@ class BubblePickerActivity : AppCompatActivity() {
         val colors = resources.obtainTypedArray(R.array.colors)
         val images = resources.obtainTypedArray(R.array.images)
         val w = window
-        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         picker.adapter = object : BubblePickerAdapter {
 
             override val totalCount = titles.size
@@ -47,13 +46,14 @@ class BubblePickerActivity : AppCompatActivity() {
 
         colors.recycle()
         images.recycle()
-        picker.bubbleSize = 40
+        picker.bubbleSize = 30
         picker.centerImmediately = true
         picker.listener = object : BubblePickerListener {
             override fun onBubbleSelected(item: PickerItem) {
                 when (item.title) {
                     "Event" -> respondToIntent(Intent(this@BubblePickerActivity, MainActivity::class.java))
-                    "Location" -> respondToIntent(intentToMaps())
+                    "Location" -> respondToIntent(Intent(this@BubblePickerActivity, LocationActivity::class.java))
+
                     "Developer Info" -> {
                         respondToIntent(Intent(this@BubblePickerActivity, DeveloperActivity::class.java))
                     }
@@ -65,7 +65,7 @@ class BubblePickerActivity : AppCompatActivity() {
 
                     }
                     "Action Wall" -> {
-                        respondToIntent(Intent(this@BubblePickerActivity, FeedActivity::class.java))
+//                        respondToIntent(Intent(this@BubblePickerActivity, FeedActivity::class.java))
                     }
                     "Schedule" -> {
                         respondToIntent(Intent(this@BubblePickerActivity, ScheduleActivity::class.java))
@@ -89,14 +89,6 @@ class BubblePickerActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         picker.onPause()
-    }
-
-    fun intentToMaps(): Intent {
-        val intent = Intent(Intent.ACTION_VIEW)
-        val chooserIntent = Intent.createChooser(intent, "Your Destination")
-        intent.data = Uri.parse("geo:12.9014963,77.6290913?z=17")
-        return chooserIntent
-
     }
 
     fun respondToIntent(intent: Intent) {

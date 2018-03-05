@@ -34,8 +34,8 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingBottom="50dp"
-        android:paddingEnd="35dp"
-        android:paddingStart="35dp"
+        android:paddingEnd="40dp"
+        android:paddingStart="40dp"
         android:paddingTop="50dp" />
 
 </LinearLayout>

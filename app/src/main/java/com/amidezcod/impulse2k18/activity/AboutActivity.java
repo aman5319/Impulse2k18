@@ -7,6 +7,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.amidezcod.impulse2k18.adapter.ViewPagerAdapterAbout;
 import com.amidezcod.impulse2k18.fragments.AboutChildrenEducationSociety;
@@ -21,6 +23,7 @@ public class AboutActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private AppBarLayout appBarLayout;
+    private LinearLayout linearLayout;
     boolean onlyOneTime = true;
 
     @Override
@@ -30,7 +33,7 @@ public class AboutActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.tab_viewpager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-
+        linearLayout = findViewById(R.id.linearlayouthide);
         Toolbar toolbar = findViewById(R.id.toolbar_about);
         collapsingToolbarLayout = findViewById(R.id.htab_collapse_toolbar);
         appBarLayout = findViewById(R.id.htab_appbar);
@@ -58,15 +61,19 @@ public class AboutActivity extends AppCompatActivity {
 
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {
-
                 }
 
                 @Override
                 public void onTabReselected(TabLayout.Tab tab) {
-
                 }
             });
         }
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            if (verticalOffset == 0)
+                linearLayout.setVisibility(View.VISIBLE);
+            else
+                linearLayout.setVisibility(View.INVISIBLE);
+        });
     }
 
 

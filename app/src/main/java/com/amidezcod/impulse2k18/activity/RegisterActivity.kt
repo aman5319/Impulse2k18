@@ -2,6 +2,7 @@ package com.amidezcod.impulse2k18.activity
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.Intent
@@ -86,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
                                     editTextToString(register_phone),
                                     editTextToString(register_college),
                                     event_name))
-                    addReg( event_name)
+                    addReg(event_name)
                     showNotification(editTextToString(register_name), event_name)
                     toast("Please read Rules and regulation")
                     startActivity(Intent(this, RulesActivity::class.java))
@@ -115,11 +116,11 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun editTextToString(editText: EditText): String = editText.text.toString()
     private fun isValidEmail(email: String): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    private fun toast(message: String) = Toast.makeText(this@RegisterActivity, message, Toast.LENGTH_SHORT).show()
+    private fun toast(message: String) = Toast.makeText(this@RegisterActivity, message, Toast.LENGTH_LONG).show()
     private fun isValidPhone(phone: String): Boolean = phone.length == 10
 
     fun addReg(event: String) {
-        val registerModal = RegistrationEntity(uid =0L, event = event)
+        val registerModal = RegistrationEntity(uid = 0L, event = event)
         Single.fromCallable {
             roomDatabase?.registrationDao()?.insert(registerModal)
         }.subscribeOn(Schedulers.io())
@@ -135,6 +136,8 @@ class RegisterActivity : AppCompatActivity() {
                     "\"$fullname your seat has been booked for $event see you at T.O.C.E\"")
 
         }
+        val intent = Intent(this@RegisterActivity, ScheduleActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         val notification: NotificationCompat.Builder =
                 NotificationCompat.Builder(this@RegisterActivity, "com.amidezcod.impulse")
                         .setSmallIcon(R.drawable.ic_pen)
@@ -148,6 +151,7 @@ class RegisterActivity : AppCompatActivity() {
                         .setAutoCancel(true)
                         .setVibrate(longArrayOf(1000, 1000))
                         .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                        .setContentIntent(PendingIntent.getActivity(this@RegisterActivity, 0, intent, PendingIntent.FLAG_ONE_SHOT))
         NotificationManagerCompat.from(this@RegisterActivity)
                 .notify(123, notification.build())
     }

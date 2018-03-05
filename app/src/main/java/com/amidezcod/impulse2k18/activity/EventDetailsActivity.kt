@@ -1,15 +1,15 @@
 package com.amidezcod.impulse2k18.activity
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import com.amidezcod.impulse2k18.adapter.CardPagerAdapter
 import com.amidezcod.impulse2k18.modal.EventDetailsInfo
 import impulse2k18.R
@@ -32,7 +32,7 @@ class EventDetailsActivity : AppCompatActivity() {
         val parcel: EventDetailsInfo = intent.getParcelableExtra<EventDetailsInfo>(CardPagerAdapter.EVENT_DETAILS_INTENT)
         description_text.text = parcel.description
         rules_text.text = parcel.rules
-        registration_price.text = "\u20B9" + parcel.registrationFee
+
         prize.text = parcel.prize
         venue_detail.text = parcel.venue
         cord1.text = parcel.coordinator[0]
@@ -47,12 +47,56 @@ class EventDetailsActivity : AppCompatActivity() {
         image_detail.setImageResource(imageId)
         collapse.title = text
 
-        register_now.setOnClickListener({
-            val intent = Intent(this@EventDetailsActivity, RegisterActivity::class.java)
-            intent.putExtra("EventName", text)
-            startActivity(intent)
-        })
+        if (text != "#Gaming") {
+            registration_price.text = "\u20B9" + parcel.registrationFee
+            register_now.setOnClickListener({
+                val intent = Intent(this@EventDetailsActivity, RegisterActivity::class.java)
+                intent.putExtra("EventName", text)
+                startActivity(intent)
+            })
+        } else {
+            registration_price.text = parcel.registrationFee
 
+            val values = arrayOf<CharSequence>(" NFS ", " FIFA ", " CS ", "Mini Militia")
+            var games = ""
+            register_now.setOnClickListener({
+                AlertDialog.Builder(this@EventDetailsActivity)
+                        .setTitle("Select your Game")
+                        .setSingleChoiceItems(values, -1, { _, which ->
+                            when (which) {
+                                0 -> {
+                                    games = "NFS"
+                                }
+                                1 -> {
+                                    games = "FIFA"
+                                }
+                                2 -> {
+                                    games = "CS"
+                                }
+                                3 -> {
+                                    games = "Mini Militia"
+                                }
+                            }
+
+                        }).setPositiveButton("Ok", { dialog, which ->
+                            if (games.isNotEmpty()) {
+                                val intent = Intent(this@EventDetailsActivity, RegisterActivity::class.java)
+                                intent.putExtra("EventName", "$text($games)")
+                                startActivity(intent)
+                            } else {
+                                Toast.makeText(this@EventDetailsActivity, "First select any game to register", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                        .setNegativeButton("Cancel", { dialog, _ ->
+                            games = ""
+                            dialog.dismiss()
+                        })
+                        .setCancelable(false)
+                        .show()
+
+            })
+
+        }
 
     }
 

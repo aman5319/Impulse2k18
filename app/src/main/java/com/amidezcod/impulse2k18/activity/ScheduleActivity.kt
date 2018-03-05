@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.amidezcod.impulse2k18.database.EventOnly
 import com.amidezcod.impulse2k18.database.MyDatabase
 import impulse2k18.R
@@ -22,11 +23,10 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule)
+        Toast.makeText(this@ScheduleActivity, "Carry your college Id card in the technical fest", Toast.LENGTH_LONG).show()
         roomDatabase = Room.databaseBuilder(this@ScheduleActivity,
                 MyDatabase::class.java,
                 "mydb").build()
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

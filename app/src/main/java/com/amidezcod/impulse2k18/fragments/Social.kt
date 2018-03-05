@@ -22,7 +22,6 @@ class Social : Fragment() {
         val twitter = view.findViewById<LinearLayout>(R.id.twitter)
         val gmail = view.findViewById<LinearLayout>(R.id.gmail)
         val youtube = view.findViewById<LinearLayout>(R.id.youtube)
-        val mail_id = "toce.impulse@gmail.com"
         val youtube_id = "https://www.youtube.com/watch?v=WB1WpNEZUh8"
         val facebookUrl = "https://www.facebook.com/toce.impulse"
         val instaUrl = "https://www.instagram.com/impulse2018/"
@@ -30,8 +29,10 @@ class Social : Fragment() {
         facebook.setOnClickListener({ openUrl(facebookUrl) })
         insta.setOnClickListener({ openUrl(instaUrl) })
         twitter.setOnClickListener({ openUrl(twitterUrl) })
-        gmail.setOnClickListener({ composeEmail(mail_id) })
+        gmail.setOnClickListener({ composeEmail(arrayOf("toce.impulse@gmail.com")) })
         youtube.setOnClickListener({ openUrl(youtube_id) })
+        view.findViewById<LinearLayout>(R.id.web_url)
+                .setOnClickListener({ openUrl("https://www.impulse2k18.in") })
         return view
     }
 
@@ -44,7 +45,7 @@ class Social : Fragment() {
         }
     }
 
-    fun composeEmail(address: String) {
+    fun composeEmail(address: Array<String>) {
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, address)
@@ -55,3 +56,4 @@ class Social : Fragment() {
         }
     }
 }
+
