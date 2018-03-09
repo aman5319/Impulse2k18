@@ -15,6 +15,7 @@ import com.igalata.bubblepicker.model.PickerItem
 import impulse2k18.R
 import kotlinx.android.synthetic.main.activity_bubble_picker.*
 
+
 class BubblePickerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +66,6 @@ class BubblePickerActivity : AppCompatActivity() {
 
                     }
                     "Action Wall" -> {
-//                        respondToIntent(Intent(this@BubblePickerActivity, FeedActivity::class.java))
                     }
                     "Schedule" -> {
                         respondToIntent(Intent(this@BubblePickerActivity, ScheduleActivity::class.java))
@@ -100,4 +100,6 @@ class BubblePickerActivity : AppCompatActivity() {
     override fun onBackPressed() {
         finish()
     }
+
+
 }

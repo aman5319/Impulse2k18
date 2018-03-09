@@ -24,10 +24,13 @@ class AboutImpulse : Fragment() {
                 "\n" +
                 "IMPULSE 2k18 intends to be a platform for students from all colleges across Karnataka to exhibit and explore their skills and creativity. " +
                 "\n" +
-                "IMPULSE 2k18 hosts a large number of events to cover a number of dimensions of creative technology such as It Quiz ,Web Designing, Photography, Treasure Hunt , Movie Making, Namma Baashe Kannada , Gaming, Buzzinga [Star Of Impulse]  and many others. In the previous edition of Impulse, there were 40 colleges with around 500 students who took part in the fest and showcased their talent.\n" +
+                "Almost 20 events have been included in the Mega Technical fest which caters to almost 10 discipline." +
                 "\n" +
-                "Impulse 2k18 will have a host of events and competitions exploring the various dimensions of technology, which brings out creativity and innovations among the students."
-        imageAbout.setImageResource(R.drawable.impulse_logo)
+                "IMPULSE 2k18 hosts a large number of events to cover a number of dimensions of creative technology such as Gaming , Kannada , Star of Impulse, Hot wheels , Oxford Roadies , Mock press , Un-KnowIt ,PaperPlane , Devil segue , Roboventure   and many others. In the previous edition of Impulse, there were 40 colleges with around 500 students who took part in the fest and showcased their talent.\n" +
+                "\n" +
+                "Impulse 2k18 will have a host of events and competitions exploring the various dimensions of technology, which brings out creativity and innovations among the students.\n" +
+
+                imageAbout.setImageResource(R.drawable.impulse_logo)
         imageAboutDesc.visibility = View.GONE
         return view
     }

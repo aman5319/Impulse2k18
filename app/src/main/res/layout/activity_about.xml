@@ -56,9 +56,10 @@
                     android:src="@mipmap/impulse_logo" />
 
                 <TextView
+                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/drive_your_impulse"
+                    android:text="@string/drive_your_pulse"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             </LinearLayout>
 

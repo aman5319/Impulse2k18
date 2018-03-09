@@ -136,7 +136,7 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
                 break;
             case 1:
                 color = R.drawable.debate_grad;
-                text = "#NammaBhaseKannada";
+                text = "ಅಭ್ಯುದಯ";
                 break;
             case 2:
                 color = R.drawable.entertainment_grad;

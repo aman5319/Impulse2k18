@@ -78,7 +78,7 @@ class EventDetailsActivity : AppCompatActivity() {
                                 }
                             }
 
-                        }).setPositiveButton("Ok", { dialog, which ->
+                        }).setPositiveButton("Ok", { _, _ ->
                             if (games.isNotEmpty()) {
                                 val intent = Intent(this@EventDetailsActivity, RegisterActivity::class.java)
                                 intent.putExtra("EventName", "$text($games)")

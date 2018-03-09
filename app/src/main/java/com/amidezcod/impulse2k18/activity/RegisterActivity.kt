@@ -1,5 +1,6 @@
 package com.amidezcod.impulse2k18.activity
 
+import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -11,6 +12,7 @@ import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.provider.Settings
 import android.support.annotation.RequiresApi
 import android.support.design.widget.Snackbar
@@ -89,8 +91,7 @@ class RegisterActivity : AppCompatActivity() {
                                     event_name))
                     addReg(event_name)
                     showNotification(editTextToString(register_name), event_name)
-                    toast("Please read Rules and regulation")
-                    startActivity(Intent(this, RulesActivity::class.java))
+                    addCalendarEvent()
                 } else {
                     Snackbar.make(linear_layout_snackbar, "No Internet Connectivity", Snackbar.LENGTH_LONG)
                             .setAction("Retry", {
@@ -145,8 +146,8 @@ class RegisterActivity : AppCompatActivity() {
                         .setContentTitle("Impulse 2k18")
                         .setContentText("Successful")
                         .setStyle(NotificationCompat.BigTextStyle()
-                                .setBigContentTitle("Thank you for registration ")
-                                .bigText("$fullname your seat has been booked for $event see you at T.O.C.E"))
+                                .setBigContentTitle("Thank you")
+                                .bigText("$fullname you have been registered for $event \n see you at T.O.C.E"))
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
                         .setAutoCancel(true)
                         .setVibrate(longArrayOf(1000, 1000))
@@ -174,4 +175,20 @@ class RegisterActivity : AppCompatActivity() {
         notificationManager.createNotificationChannel(channel)
     }
 
+    fun addCalendarEvent() {
+        val intent = Intent(Intent.ACTION_INSERT)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.Events.TITLE, "Impulse 2k18 event")
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, "The Oxford college of engineering")
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, 1521689400000)
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, 1521804600000)
+                .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+            toast("Please read Rules and regulation")
+            startActivity(Intent(this, RulesActivity::class.java))
+            finish()
+        }
+    }
 }

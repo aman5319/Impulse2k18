@@ -160,7 +160,7 @@ class DeveloperActivity : AppCompatActivity() {
             }
             R.id.github -> {
                 Toast.makeText(this@DeveloperActivity, "Fork Our project", Toast.LENGTH_LONG).show()
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.github.com")))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/aman5319/impulse2k18")))
             }
         }
         return super.onOptionsItemSelected(item)

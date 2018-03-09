@@ -19,7 +19,6 @@
     <string name="register_now">Register Now</string>
     <string name="registration_details">Rules and Details</string>
     <string name="read_code_of_conduct">READ Code of Conduct</string>
-    <string name="drive_your_impulse">Drive your Impulse</string>
     <string name="you_got_it_right">You Got It Right !!</string>
     <string name="watch_impulse_videos">Watch Impulse videos</string>
     <string name="we_post_awesome_videos">We Post Awesome Videos</string>
@@ -30,7 +29,7 @@
     <string name="phone_number">Phone Number</string>
     <string name="name">Full Name</string>
     <string name="college_name">College Name</string>
-    <string name="title_activity_schedule">ScheduleActivity</string>
+    <string name="title_activity_schedule">Schedule</string>
     <string name="profile">Profile</string>
     <string name="impulse_18">Impulse\' 18</string>
     <string name="github">Github</string>
