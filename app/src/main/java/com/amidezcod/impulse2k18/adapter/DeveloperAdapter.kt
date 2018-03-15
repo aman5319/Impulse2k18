@@ -17,9 +17,9 @@ import impulse2k18.R
  */
 class DeveloperAdapter(var list: ArrayList<DeveloperModal>, val context: Context) : RecyclerView.Adapter<DeveloperAdapter.MyViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater
-                .from(parent?.context)
+                .from(parent.context)
                 .inflate(R.layout.developer_item_card, parent, false))
     }
 
@@ -27,10 +27,10 @@ class DeveloperAdapter(var list: ArrayList<DeveloperModal>, val context: Context
         return list.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
-        holder?.bind(list[position])
-        setAnimation(holder?.itemView, position)
-        holder?.itemView?.setOnClickListener({
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.bind(list[position])
+        setAnimation(holder.itemView, position)
+        holder.itemView?.setOnClickListener({
             Toast.makeText(context, "Swipe to Contact any of us", Toast.LENGTH_SHORT).show()
         })
     }

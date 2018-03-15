@@ -155,58 +155,62 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
                 text = "#MockPress";
                 break;
             case 6:
+                color = R.drawable.entertainment_grad;
+                text = "#SAE";
+                break;
+            case 7:
                 color = R.drawable.coding_grad;
                 text = "#Un-KnowIT";
                 break;
-            case 7:
+            case 8:
                 color = R.drawable.entertainment_grad;
                 text = "#PaperPlane";
                 break;
-            case 8:
+            case 9:
                 color = R.drawable.debate_grad;
                 text = "#DevilSegue";
                 break;
-            case 9:
+            case 10:
                 color = R.drawable.web_grad;
                 text = "#Roboventure";
                 break;
-            case 10:
+            case 11:
                 color = R.drawable.coding_grad;
                 text = "#GearUp";
                 break;
-            case 11:
+            case 12:
                 color = R.drawable.entertainment_grad;
                 text = "#PicturesQue";
                 break;
-            case 12:
+            case 13:
                 color = R.drawable.debate_grad;
                 text = "#Montage";
                 break;
-            case 13:
+            case 14:
                 color = R.drawable.web_grad;
                 text = "#Construct";
                 break;
-            case 14:
+            case 15:
                 color = R.drawable.entertainment_grad;
                 text = "#RollCameraAction";
                 break;
-            case 15:
+            case 16:
                 color = R.drawable.coding_grad;
                 text = "#TechnoVation";
                 break;
-            case 16:
+            case 17:
                 color = R.drawable.web_grad;
                 text = "#WheelsOnFire";
                 break;
-            case 17:
+            case 18:
                 color = R.drawable.entertainment_grad;
                 text = "#Techno-Opus";
                 break;
-            case 18:
+            case 19:
                 color = R.drawable.coding_grad;
                 text = "#WebDesign";
                 break;
-            case 19:
+            case 20:
                 color = R.drawable.web_grad;
                 text = "#TreasureHunt";
                 break;

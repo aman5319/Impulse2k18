@@ -55,8 +55,8 @@
             android:name="com.amidezcod.impulse2k18.activity.ScheduleActivity"
             android:label="@string/title_activity_schedule"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
-            android:theme="@style/withToolbar" />
-        <activity android:name="com.amidezcod.impulse2k18.activity.LocationActivity"></activity>
+            android:theme="@style/schedule" />
+        <activity android:name="com.amidezcod.impulse2k18.activity.LocationActivity"/>
     </application>
 
 </manifest>

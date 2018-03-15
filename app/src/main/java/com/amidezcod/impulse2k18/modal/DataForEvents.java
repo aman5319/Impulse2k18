@@ -144,6 +144,17 @@ public class DataForEvents {
                         new String[]{"Pavan reddy +918123857730"
                                 , "Shrinidhi bhat +918550079322"}
                 )));
+        mCardAdapter.addCardItem(new CardItem(
+                R.drawable.sae, "#SAE", "Showcase your Design and Technical skills",
+                new EventDetailsInfo(" A platform to display the projects designed by the  prodigies and enable them to connect and interact to the international and national companies to be present on the day of event to showcase their technical skills and present it to the SAE judges and a wide range of audience.",
+                        ">>  10-15 members in a team\n" +
+                                ">>  Should have participated in national or international competition\n" +
+                                ">>  Documents assisting the participation in any previous competition shloud be carried along \n" +
+                                ">>  Briefing of technical and aesthetic specification should be done\n" +
+                                ">>  Based on the model and year of participation,the appearing model will be judged accordingly\n" +
+                                ">>  Stalls will be provided,need to present 15 min prior to start of the event \n"
+                        , "1000/- per Team", "Attractive cash prize", "The Oxford College of Engineering",
+                        new String[]{"prathap +919886061125", "Trilochan +919986706069"})));
 
         mCardAdapter.addCardItem(
                 new CardItem(R.drawable.unknownit, "#Un-KnowIT", "Unlocking Knowledge at the speed of thought", new EventDetailsInfo(
@@ -182,7 +193,7 @@ public class DataForEvents {
                 new CardItem(R.drawable.devil, "#DevilSegue", "The Eyes are useless when The Mind is blind",
                         new EventDetailsInfo(
                                 "This event is to showcase the talent of a person when blindfolded and coordinating with team members to complete a given task.",
-                                "1. A team must consist of 3 members. \n" +
+                                "1. A team must consist of 2 or 3 members not more than that \n" +
                                         "2. Participants from different educational institutions can also form a team. \n" +
                                         "3. There is no restriction to the number of teams participating from same educational institute. \n" +
                                         "4. All the students with a valid identity card/ bonafide Certificate for their respective engineering Institutes are eligible to participate. \n" +
@@ -276,7 +287,7 @@ public class DataForEvents {
         mCardAdapter.addCardItem(
                 new CardItem(R.drawable.montage, "#Montage", "Imagine Experiment and Create. Let your Ideas Speak ", new EventDetailsInfo(
                         "Collage making is an interesting branch of art in which the poster is made by pasting unused/discarded pieces of papers/magazines on a chart paper.\n" +
-                                "In this event, students will be provided with different themes. With an objective to explore the students creativity and imagination along with improving their presentation skills.",
+                                "In this event, students will be provided with theme such as TRANSPORTATION \tFAILING WORLD\t DEMONETIZATION. With an objective to explore the students creativity and imagination along with improving their presentation skills.",
                         ">> Students shall form a team of two.\n" +
                                 ">> The collage is to be made in A2 size chart papers\n" +
                                 ">> No print outs and written words to be used.",
@@ -313,9 +324,9 @@ public class DataForEvents {
                         ">> The time limit will be 10 min (8 min. for presentation and 2 min for disscussion)\n" +
                         ">> The project/concept stream -TECHNOLOGY FOR SUSTAINABLE ENVIROMENT\n" +
                         ">> The Judge will select the best two ideas and cash prizes will be awarded and decision of the Judges will be final",
-                "50/- per person", "Attractive cash prize", "3rd floor seminar hall", new String[]{
-                "Prateeksha +919482219230",
-                "Divya +919986603353"})));
+                "100/- per person", "Attractive cash prize", "3rd floor seminar hall", new String[]{
+                "Manoj +918050402005",
+                "Ashwin +919035811476"})));
         mCardAdapter.addCardItem(new CardItem(
                 R.drawable.wheels_on_fire, "#WheelsOnFire", "Race against time",
                 new EventDetailsInfo("This is an obstracle race.The race will be held between 2 participants at a time.Winners will advance to the next round and the one who doesn't qualify will get another chance to race.",
@@ -340,7 +351,9 @@ public class DataForEvents {
                 ">> The participants must choose one topic on home automation (or) safety and security and make sure your project is based on IOT.\n" +
                 ">> Timings: 9am to 4pm\n" +
                 ">> The participants must assemble at the venue by 8:45 am\n" +
-                ">> Participants should finish their projects by 3:30 pm", "800/- per team", "Attractive cash prize",
+                ">> Participants should finish their projects by 3:30 pm\n" +
+                ">> TeamSize 2 to 4 in team not more than that."
+                , "800/- per team", "Attractive cash prize",
                 "7th floor Aryabhatta hall", new String[]{
                 "Sanjay +918050680289",
                 "Shaik +918892797997"})));
@@ -373,7 +386,6 @@ public class DataForEvents {
                         }
                 )));
 
-
         return mCardAdapter;
     }
 
@@ -388,18 +400,9 @@ public class DataForEvents {
         developerModals.add(new DeveloperModal("Rijo John", "Designer", "", "7406467409"));
         developerModals.add(new DeveloperModal("Nitin", "Designer", "", "8892086884"));
         developerModals.add(new DeveloperModal("Prashant", "Designer", "", "9742825867"));
-        developerModals.add(new DeveloperModal("Uddipta", "Developer", "https://www.github.com/udipta", ""));
-        developerModals.add(new DeveloperModal("Sovan", "Event Management", "", "7022298751"));
-        developerModals.add(new DeveloperModal("Saurabh", "Event Management", "", "9986895952"));
-        developerModals.add(new DeveloperModal("Surya", "Designer", "", "8867516698"));
-        developerModals.add(new DeveloperModal("Sahana", "Designer", "", "9972492202"));
-        developerModals.add(new DeveloperModal("Swetha", "Management", "", "7406400777"));
-        developerModals.add(new DeveloperModal("Noel", "Management", "", "8095940017"));
-        developerModals.add(new DeveloperModal("Zaid", "Management", "", "7019049510"));
         developerModals.add(new DeveloperModal("Kiran K", "Developer & Designer", "https://www.github.com/keepcalmncode", ""));
         developerModals.add(new DeveloperModal("Ram", "Developer & Designer", "https://www.github.com/raam97", ""));
         developerModals.add(new DeveloperModal("Rahul", "Developer", "https://www.github.com/rahuljain5", ""));
-        developerModals.add(new DeveloperModal("Drithiman", "Developer & Designer", "https://www.github.com/DrithimanM", ""));
         developerModals.add(new DeveloperModal("Aman", "Developer", "https://www.github.com/aman5319", ""));
 
         return developerModals;

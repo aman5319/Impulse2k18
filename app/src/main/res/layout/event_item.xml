@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="0dp">
+
+    <pl.hypeapp.materialtimelineview.MaterialTimelineView
+        android:id="@+id/item_weather_timeline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_light"
+        android:padding="16dp"
+        app:timeline_margin_start="32dp"
+        app:timeline_position="middle"
+        app:timeline_type="item">
+
+        <TextView
+            tools:text="Gaming"
+            android:id="@+id/event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/event_icon"/>
+
+        <TextView
+            tools:text="spdp lab"
+            android:id="@+id/event_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/event_name"
+            app:layout_constraintTop_toBottomOf="@id/event_name"/>
+
+        <TextView
+            tools:text="9am-11am"
+            android:id="@+id/event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </pl.hypeapp.materialtimelineview.MaterialTimelineView>
+
+</android.support.v7.widget.CardView>

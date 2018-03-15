@@ -23,7 +23,7 @@
             android:layout_gravity="top|end"
             android:layout_weight="1.3"
             android:scaleType="centerCrop"
-            tools:src="@drawable/coding" />
+            tools:src="@drawable/game" />
         <TextView
             android:id="@+id/event_quote"
             android:layout_width="match_parent"
@@ -31,6 +31,7 @@
             android:layout_weight="0.7"
             android:gravity="center"
             android:paddingEnd="5dp"
+            android:letterSpacing="0.1"
             android:paddingStart="5dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#484646"
