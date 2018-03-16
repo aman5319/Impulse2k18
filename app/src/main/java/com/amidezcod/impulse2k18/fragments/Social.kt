@@ -26,7 +26,9 @@ class Social : Fragment() {
         val facebookUrl = "https://www.facebook.com/toce.impulse"
         val instaUrl = "https://www.instagram.com/impulse2018/"
         val twitterUrl = "https://www.twitter.com/Impulse2k18"
+        val ratingUrl = "https://play.google.com/store/apps/details?id=com.amidezcod.impulse2k18&hl=en"
         facebook.setOnClickListener({ openUrl(facebookUrl) })
+        rating.setOnClickListener({ openUrl(ratingUrl) })
         insta.setOnClickListener({ openUrl(instaUrl) })
         twitter.setOnClickListener({ openUrl(twitterUrl) })
         gmail.setOnClickListener({ composeEmail(arrayOf("toce.impulse@gmail.com")) })

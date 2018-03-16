@@ -3,15 +3,16 @@ package com.amidezcod.impulse2k18.activity
 import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v4.app.NavUtils
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import com.amidezcod.impulse2k18.adapter.ScheduleRecyclerAdapter
-import com.amidezcod.impulse2k18.database.EventOnly
 import com.amidezcod.impulse2k18.database.MyDatabase
 import com.amidezcod.impulse2k18.modal.EventDivider
 import com.amidezcod.impulse2k18.modal.EventHeader
@@ -19,48 +20,46 @@ import com.amidezcod.impulse2k18.modal.EventItem
 import impulse2k18.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_developer.*
 import kotlinx.android.synthetic.main.activity_schedule.*
 
 class ScheduleActivity : AppCompatActivity() {
     companion object {
-        val eventHeader: EventHeader = EventHeader("Impulse 2k18",
-                "Impulse 2k18 Inaugaration", "9:00 am")
+        val eventHeaderDay1: EventHeader = EventHeader("22nd March 2018 (Day 1)",
+                "Welcome to Impulse 2k18", "9am-5pm")
+        val eventHeaderDay2: EventHeader = EventHeader("23rd March 2018 (Day 2)",
+                "Welcome to Impulse 2k18", "9am-5pm")
 
-        val eventDividers: ArrayList<EventDivider> = arrayListOf(
-                EventDivider("", ""),
-                EventDivider("", ""),
-                EventDivider("Next day", "star of impulse"),
-                EventDivider("Next 2 days from now", "picturesques"),
-                EventDivider("Next 3 days from now", "robo"),
-                EventDivider("Next week", "array"),
-                EventDivider("Next 2 days from now", "picturesques"),
-                EventDivider("Next 3 days from now", "robo"),
-                EventDivider("Next week", "array"),
-                EventDivider("Next week", "array"),
-                EventDivider("Next 2 days from now", "picturesques"),
-                EventDivider("Next 3 days from now", "robo"),
-                EventDivider("Next week", "array"),
-                EventDivider("Next 2 days from now", "picturesques"),
-                EventDivider("Next 3 days from now", "robo")
+
+        val eventItemListDay1: ArrayList<EventItem> = arrayListOf(
+                EventItem("Gaming(Mini Militia)", "N-313,314 Cse Dept.", "9am-4pm"),
+                EventItem("Gaming(FIFA)", "Spdp lab Cse Dept.", "9am-4pm"),
+                EventItem("Gaming(CS)", "Spdp lab Cse Dept.", "9am-4pm"),
+                EventItem("Gaming(NFS)", "Spdp lab Cse Dept.", "9am-4pm"),
+                EventItem("GearUp", "IV Floor ISE Seminar Hall New Building", "11:30am-4pm"),
+                EventItem("WheelsOnFire", "Compound Ground", "11am-4pm"),
+                EventItem("TechnoVation", "3rd Floor seminar Hall", "11am-2pm"),
+                EventItem("MockPress", "6th floor Seminar Hall", "2pm-4pm"),
+                EventItem("Un-KnowIT", "6th floor Seminar Hall", "10am-1pm"),
+                EventItem("PaperPlane", "N-301", "2pm"),
+                EventItem("Montage", "II Floor Drawing Hall", "9:30am-12:30pm"),
+                EventItem("HotWheels", "Auto Engg Lab", "10am-3pm"),
+                EventItem("DevilSegue", "PSS Lab 5th Floor new Building", "12pm-3pm"),
+                EventItem("OxfordRoadies", "Old Building Ground Floor\n606 old building", "10am-1pm\n2pm-5pm"),
+                EventItem("WebDesigning", "MCA Lab 7th floor new Building", "12pm-3pm", isLastItem = true))
+        val eventItemListDay2: ArrayList<EventItem> = arrayListOf(
+                EventItem("Gaming(FIFA)", "Spdp lab Cse Dept.", "9am-4pm"),
+                EventItem("Gaming(CS)", "Spdp lab Cse Dept.", "9am-4pm"),
+                EventItem("Gaming(NFS)", "Spdp lab Cse Dept.", "9am-4pm"),
+                EventItem("StarOfImpulse", "6th floor seminar new Building", "1pm-4pm"),
+                EventItem("ಅಭ್ಯುದಯ", "6th floor seminar new Building", "9:30am-1pm"),
+                EventItem("PicturesQue", "IV Floor ISE Seminar Hall new Building", "10am-4pm"),
+                EventItem("Techno-Opus", "7th floor Aryabatta hall new Building", "9am-4pm"),
+                EventItem("RollCameraAction", "3rd floor seminar", "1pm-4pm"),
+                EventItem("Construct", "II Floor Drawing Hall", "9.30am-12.30pm"),
+                EventItem("Roboventure", "Footpath near Workshop", "1pm-3pm"),
+                EventItem("TreasureHunt", "MCA Seminar Hall", "9.30am-1pm", isLastItem = true)
+
         )
-
-        val eventItemList: ArrayList<EventItem> = arrayListOf(
-                EventItem("Gaming", "spdp lab cse 3rd floor", "9 am"),
-                EventItem("kanadinga", "6th floor seminar hall", "1pm"),
-                EventItem("starof impulse", "6th floor seminar hall", "18.5f"),
-                EventItem("23rd", "", "18f"),
-                EventItem("23rd", "Sunny", "21.5f"),
-                EventItem("23rd", "Windy", "19.7", isLastItem = true),
-                EventItem("23rd", "", "18f"),
-                EventItem("23rd", "Sunny", "21.5f"),
-                EventItem("23rd", "Windy", "19.7f", isLastItem = true),
-                EventItem("22nd", "coding", "24f"),
-                EventItem("22nd", "gaming", "22.2f"),
-                EventItem("22nd", "webdesinging", "18.5f"),
-                EventItem("23rd", "", "18f"),
-                EventItem("23rd", "", "18f"),
-                EventItem("23rd", "Sunny", "21.5f"))
         var roomDatabase: MyDatabase? = null
     }
 
@@ -70,18 +69,24 @@ class ScheduleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_schedule)
         Toast.makeText(this@ScheduleActivity, "Carry your college Id card in the technical fest", Toast.LENGTH_LONG).show()
         roomDatabase = Room.databaseBuilder(this@ScheduleActivity,
-                MyDatabase::class.java,
-                "mydb").build()
-        schudleRecyclerAdapter = ScheduleRecyclerAdapter()
+                MyDatabase::class.java, "mydb").build()
+        schudleRecyclerAdapter = ScheduleRecyclerAdapter(getRegisteredEventName())
+
+
         recycler_view_schedule.adapter = schudleRecyclerAdapter
         recycler_view_schedule.layoutManager = LinearLayoutManager(this)
-        schudleRecyclerAdapter.addEventHeader(eventHeader)
-        for (i in 0..14) {
-            schudleRecyclerAdapter.addEventDivider(eventDividers[i])
-            schudleRecyclerAdapter.addEventItem(eventItemList[i])
+        schudleRecyclerAdapter.addEventHeader(eventHeaderDay1)
+        for (i in eventItemListDay1) {
+            schudleRecyclerAdapter.addEventDivider(EventDivider(R.drawable.day1))
+            schudleRecyclerAdapter.addEventItem(i)
         }
 
+        schudleRecyclerAdapter.addEventHeader(eventHeaderDay2)
 
+        for (i in eventItemListDay2) {
+            schudleRecyclerAdapter.addEventDivider(EventDivider(R.drawable.day2))
+            schudleRecyclerAdapter.addEventItem(i)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -92,7 +97,7 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.profile -> {
-                showEventsRegistered()
+                alertShow()
                 return true
             }
             android.R.id.home -> {
@@ -103,19 +108,27 @@ class ScheduleActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showEventsRegistered() {
+
+    private fun getRegisteredEventName(): MutableList<String> {
+        val eventList: MutableList<String> = ArrayList()
         roomDatabase?.registrationDao()?.getAllReg()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { reg -> alertShow(reg) }
+                ?.subscribe { reg -> reg.map { x -> x.event }.forEach { eventList.add(it) } }
+        return eventList
     }
 
-    private fun alertShow(list: MutableList<EventOnly>) {
-
+    private fun alertShow() {
+        val textView = TextView(this@ScheduleActivity)
+        textView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, android.R.color.black))
+        textView.text = "Your Registrations"
+        textView.textSize = 24f
+        textView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.goingEvent))
+        textView.setPadding(32, 32, 8, 8)
         AlertDialog.Builder(this@ScheduleActivity)
-                .setTitle("Your registrations")
+                .setCustomTitle(textView)
                 .setAdapter(ArrayAdapter(this@ScheduleActivity,
-                        android.R.layout.select_dialog_item, list.map { x -> x.event })) { dialog, which ->
+                        android.R.layout.select_dialog_item, getRegisteredEventName())) { _, _ ->
                 }
                 .show()
     }

@@ -11,21 +11,15 @@
     <pl.hypeapp.materialtimelineview.MaterialTimelineView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f5be25"
+        app:timeline_margin_start="32dp"
+        android:background="@color/picker1"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
-        app:timeline_margin_start="32dp"
+        app:timeline_bottom_radio_color="@color/colorPrimary"
         app:timeline_position="first"
         app:timeline_type="item">
 
-        <ImageView
-            android:id="@+id/event_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@drawable/ic_github"
-            app:layout_constraintBottom_toBottomOf="@id/event_name_header"
-            app:layout_constraintTop_toTopOf="@id/event_name_header" />
 
         <TextView
             android:id="@+id/event_location_header"
@@ -33,7 +27,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="@id/event_name_header"
+            app:layout_constraintStart_toStartOf="@+id/event_name_header"
             app:layout_constraintTop_toBottomOf="@+id/event_name_header"
             tools:text="6 th floor" />
 
@@ -41,29 +35,23 @@
             android:id="@+id/event_name_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
+            android:textSize="26sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/event_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Impulse 2k18" />
 
         <TextView
             android:id="@+id/event_time_header"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="40dp"
-            android:textSize="24sp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/event_name_header"
+            app:layout_constraintTop_toBottomOf="@+id/event_location_header"
             tools:text="9 am-11pm" />
 
-        <ImageView
-            android:id="@+id/umbrella"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@id/event_icon"
-            app:layout_constraintTop_toBottomOf="@id/event_location_header" />
 
 
     </pl.hypeapp.materialtimelineview.MaterialTimelineView>

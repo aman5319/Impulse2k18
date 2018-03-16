@@ -1,6 +1,8 @@
 package com.amidezcod.impulse2k18.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +33,17 @@ class DeveloperAdapter(var list: ArrayList<DeveloperModal>, val context: Context
         holder.bind(list[position])
         setAnimation(holder.itemView, position)
         holder.itemView?.setOnClickListener({
-            Toast.makeText(context, "Swipe to Contact any of us", Toast.LENGTH_SHORT).show()
+            if (holder.textViewName.text == "Ram") {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:" + "+917001861927")
+                Toast.makeText(context, "This is Ram's phone no ", Toast.LENGTH_SHORT).show()
+                context.startActivity(intent)
+            } else {
+                Toast.makeText(context, "Swipe to Contact any of us", Toast.LENGTH_SHORT).show()
+            }
         })
     }
+
 
     val lastPosition: Int = -1
 

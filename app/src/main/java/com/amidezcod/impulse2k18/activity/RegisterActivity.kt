@@ -1,6 +1,5 @@
 package com.amidezcod.impulse2k18.activity
 
-import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -186,9 +185,6 @@ class RegisterActivity : AppCompatActivity() {
                 .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
-            toast("Please read Rules and regulation")
-            startActivity(Intent(this, RulesActivity::class.java))
-            finish()
         }
     }
 }

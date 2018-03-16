@@ -16,7 +16,7 @@ class LocationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_location)
         location_text.paintFlags = Paint.UNDERLINE_TEXT_FLAG or location_text.paintFlags
         location_text.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorPrimaryDark))
-        location_text.setOnClickListener({ intentToMaps() })
+        location_box.setOnClickListener({ intentToMaps() })
     }
 
     fun intentToMaps() {

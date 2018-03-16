@@ -10,17 +10,16 @@ import com.amidezcod.impulse2k18.modal.EventItem
 /**
  * Created by amidezcod on 15/3/18.
  */
-class ScheduleRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ScheduleRecyclerAdapter(val list: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var item: ArrayList<ViewTypeSchedule>
+    private var item: ArrayList<ViewTypeSchedule> = ArrayList()
 
     private var delegateAdapter = SparseArrayCompat<ViewTypeDelegateAdapter>()
 
     init {
-        item = ArrayList()
         delegateAdapter.put(ViewTypeSchedule.HEADER, EventHeaderDelegateAdapter())
         delegateAdapter.put(ViewTypeSchedule.LINE, EventDividerDelagetAdapter())
-        delegateAdapter.put(ViewTypeSchedule.ITEM, EventItemDelegateAdapter())
+        delegateAdapter.put(ViewTypeSchedule.ITEM, EventItemDelegateAdapter(list))
 
     }
 
@@ -33,6 +32,12 @@ class ScheduleRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         delegateAdapter.get(getItemViewType(position)).onBindViewHolder(holder, item[position])
     }
+
+    override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.clearAnimation()
+    }
+
 
     override fun getItemViewType(position: Int): Int =
             item[position].getViewType()

@@ -14,6 +14,10 @@ import com.igalata.bubblepicker.model.BubbleGradient
 import com.igalata.bubblepicker.model.PickerItem
 import impulse2k18.R
 import kotlinx.android.synthetic.main.activity_bubble_picker.*
+import android.view.animation.Animation
+import android.view.animation.AlphaAnimation
+
+
 
 
 class BubblePickerActivity : AppCompatActivity() {
@@ -25,6 +29,12 @@ class BubblePickerActivity : AppCompatActivity() {
         val colors = resources.obtainTypedArray(R.array.colors)
         val images = resources.obtainTypedArray(R.array.images)
         val w = window
+        val anim = AlphaAnimation(1.0f, 0.3f)
+
+        anim.duration = 750 //You can manage the time of the blink with this parameter
+        anim.repeatMode = Animation.REVERSE
+        anim.repeatCount = Animation.INFINITE
+        blink_text.startAnimation(anim)
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         picker.adapter = object : BubblePickerAdapter {
 

@@ -398,13 +398,23 @@ public class DataForEvents {
         developerModals.add(new DeveloperModal("Prajwal ks", "Designer", "", "9482942988"));
         developerModals.add(new DeveloperModal("Rufus", "Designer", "", "9952348859"));
         developerModals.add(new DeveloperModal("Rijo John", "Designer", "", "7406467409"));
+        developerModals.add(new DeveloperModal("Uddipta", "Developer", "https://www.github.com/udipta", ""));
+        developerModals.add(new DeveloperModal("Sovan", "Event Management", "", "7022298751"));
+        developerModals.add(new DeveloperModal("Saurabh", "Event Management", "", "9986895952"));
+        developerModals.add(new DeveloperModal("Surya", "Designer", "", "8867516698"));
+        developerModals.add(new DeveloperModal("Sahana", "Designer", "", "9972492202"));
+        developerModals.add(new DeveloperModal("Swetha", "Management", "", "7406400777"));
+        developerModals.add(new DeveloperModal("Noel", "Management", "", "8095940017"));
+        developerModals.add(new DeveloperModal("Zaid", "Management", "", "7019049510"));
         developerModals.add(new DeveloperModal("Nitin", "Designer", "", "8892086884"));
         developerModals.add(new DeveloperModal("Prashant", "Designer", "", "9742825867"));
-        developerModals.add(new DeveloperModal("Kiran K", "Developer & Designer", "https://www.github.com/keepcalmncode", ""));
+        developerModals.add(new DeveloperModal("Drithiman", "Developer & Designer", "https://www.github.com/DrithimanM", ""));
+        developerModals.add(new DeveloperModal("Kali Kiran K", "Developer & Designer", "https://www.github.com/keepcalmncode", ""));
         developerModals.add(new DeveloperModal("Ram", "Developer & Designer", "https://www.github.com/raam97", ""));
         developerModals.add(new DeveloperModal("Rahul", "Developer", "https://www.github.com/rahuljain5", ""));
         developerModals.add(new DeveloperModal("Aman", "Developer", "https://www.github.com/aman5319", ""));
 
         return developerModals;
     }
+
 }
