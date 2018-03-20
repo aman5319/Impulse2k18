@@ -185,7 +185,7 @@ class DeveloperActivity : AppCompatActivity() {
                         toast("Password verified!! Access Granted ")
                         invalidateOptionsMenu()
                     } else {
-                        toast("Hmm your are smart but not today...")
+                        toast("Hmmm you are smart but not today...")
                     }
                 })
                 .setNegativeButton("cancel", { dialog, _ -> dialog.dismiss() })

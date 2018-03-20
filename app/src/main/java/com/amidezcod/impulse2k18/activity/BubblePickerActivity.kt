@@ -76,6 +76,7 @@ class BubblePickerActivity : AppCompatActivity() {
 
                     }
                     "Action Wall" -> {
+                        respondToIntent(Intent(this@BubblePickerActivity , ImpulseWallActivity::class.java))
                     }
                     "Schedule" -> {
                         respondToIntent(Intent(this@BubblePickerActivity, ScheduleActivity::class.java))
