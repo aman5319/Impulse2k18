@@ -58,7 +58,7 @@ class BubblePickerActivity : AppCompatActivity() {
 
         colors.recycle()
         images.recycle()
-        picker.bubbleSize = 30
+        picker.bubbleSize = 20
         picker.centerImmediately = true
         picker.listener = object : BubblePickerListener {
             override fun onBubbleSelected(item: PickerItem) {

@@ -174,7 +174,7 @@ class RegisterActivity : AppCompatActivity() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    fun addCalendarEvent() {
+    private fun addCalendarEvent() {
         val intent = Intent(Intent.ACTION_INSERT)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .setData(CalendarContract.Events.CONTENT_URI)

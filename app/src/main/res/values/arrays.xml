@@ -22,15 +22,15 @@
 
     <integer-array name="colors">
         <item>@color/bubble6</item>
-        <item>@color/colorPrimary</item>
+        <item>@color/bubble7</item>
         <item>@color/bubble6</item>
-        <item>@color/colorPrimary</item>
+        <item>@color/bubble7</item>
         <item>@color/bubble6</item>
-        <item>@color/colorPrimary</item>
+        <item>@color/bubble7</item>
         <item>@color/bubble6</item>
-        <item>@color/colorPrimary</item>
+        <item>@color/bubble7</item>
         <item>@color/bubble6</item>
-        <item>@color/colorPrimary</item>
+        <item>@color/bubble7</item>
     </integer-array>
 
 </resources>
