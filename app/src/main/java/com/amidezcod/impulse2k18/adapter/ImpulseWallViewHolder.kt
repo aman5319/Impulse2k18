@@ -1,12 +1,13 @@
 package com.amidezcod.impulse2k18.adapter
 
+import android.graphics.BitmapFactory
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.amidezcod.impulse2k18.modal.ImpulseWallModel
 import com.bumptech.glide.Glide
-import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.request.RequestOptions
 import impulse2k18.R
 
@@ -33,7 +34,9 @@ class ImpulseWallViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
                     .apply(RequestOptions.circleCropTransform())
                     .into(userImage)
         } else {
-            userImage.setImageResource(R.drawable.aboutus)
+            val a = RoundedBitmapDrawableFactory.create(itemView.resources, BitmapFactory.decodeResource(itemView.resources, R.drawable.impulse_logo))
+            a.isCircular = true
+            userImage.setImageDrawable(a)
         }
         if (impulseWallModel.uploadedPhoto.isNotEmpty()) {
             userUploadedImage.visibility = View.VISIBLE

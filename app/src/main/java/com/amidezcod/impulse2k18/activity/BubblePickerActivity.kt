@@ -1,12 +1,17 @@
 package com.amidezcod.impulse2k18.activity
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
+import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.Toast
 import com.igalata.bubblepicker.BubblePickerListener
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter
@@ -14,10 +19,6 @@ import com.igalata.bubblepicker.model.BubbleGradient
 import com.igalata.bubblepicker.model.PickerItem
 import impulse2k18.R
 import kotlinx.android.synthetic.main.activity_bubble_picker.*
-import android.view.animation.Animation
-import android.view.animation.AlphaAnimation
-
-
 
 
 class BubblePickerActivity : AppCompatActivity() {
@@ -76,7 +77,11 @@ class BubblePickerActivity : AppCompatActivity() {
 
                     }
                     "Action Wall" -> {
-                        respondToIntent(Intent(this@BubblePickerActivity , ImpulseWallActivity::class.java))
+                        if (isNetworkAvailable())
+                            respondToIntent(Intent(this@BubblePickerActivity, ImpulseWallActivity::class.java))
+                        else
+                            Snackbar.make(linear_layout_select, "No Internet Connectivity", Snackbar.LENGTH_LONG).show()
+
                     }
                     "Schedule" -> {
                         respondToIntent(Intent(this@BubblePickerActivity, ScheduleActivity::class.java))
@@ -112,5 +117,10 @@ class BubblePickerActivity : AppCompatActivity() {
         finish()
     }
 
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager: ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
+    }
 
 }

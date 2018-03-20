@@ -28,8 +28,11 @@ import android.widget.Toast
 import com.amidezcod.impulse2k18.BitmapUtils
 import com.amidezcod.impulse2k18.adapter.ImpulseWallViewHolder
 import com.amidezcod.impulse2k18.modal.ImpulseWallModel
+import com.bumptech.glide.Glide
+import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -40,9 +43,11 @@ import impulse2k18.R
 import kotlinx.android.synthetic.main.activity_impulse_wall.*
 import java.io.File
 import java.io.FileInputStream
+import java.util.*
 
 
 class ImpulseWallActivity : AppCompatActivity() {
+
     lateinit var firebaseRecyclerAdapter: FirebaseRecyclerAdapter<ImpulseWallModel, ImpulseWallViewHolder>
     lateinit var databaseReference: DatabaseReference
     private lateinit var firebaseStorage: FirebaseStorage
@@ -52,20 +57,25 @@ class ImpulseWallActivity : AppCompatActivity() {
     private val RC_PHOTO_PICKER_REQUEST: Int = 123
     private val REQUEST_STORAGE_PERMISSION: Int = 321
     private val REQUEST_IMAGE_CAPTURE: Int = 213
-    private var resampleBitmap: Bitmap? = null
+    private val RC_SIGN_IN = 345
     private var downloadedUrl: Uri? = null
+    private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_impulse_wall)
-        setupFirebase()
         setupToolbar()
+        disableEnableFab()
+        setupFirebase()
         setupRecyclerView()
         setupRecyclerViewAdatpter()
         setupPhotoPicker()
         setUpCamera()
         sendToFirebase()
-        disableEnableFab()
+        if (firebaseAuth.currentUser != null)
+            Glide.with(this).load(firebaseAuth.currentUser!!.photoUrl).into(user_profile_pic)
+
     }
+
 
     private fun disableEnableFab() {
         user_message_send_fab.isEnabled = false
@@ -86,8 +96,10 @@ class ImpulseWallActivity : AppCompatActivity() {
                     else
                         user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
                 } else {
-                    user_message_send_fab.isEnabled = true
-                    user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
+                    if (attachment.visibility == View.VISIBLE) {
+                        user_message_send_fab.isEnabled = true
+                        user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
+                    }
                 }
             }
 
@@ -97,37 +109,47 @@ class ImpulseWallActivity : AppCompatActivity() {
 
     private fun sendToFirebase() {
         user_message_send_fab.setOnClickListener({
-            if (user_editText.text.toString().isNotEmpty() && downloadedUrl == null) {
-                val a = ImpulseWallModel("", "AMAN", "", user_editText.text.toString().trim())
-                databaseReference.push().setValue(a)
-                Toast.makeText(this@ImpulseWallActivity, "first", Toast.LENGTH_SHORT).show()
-                user_message_send_fab.isEnabled = false
-                user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
+            if (firebaseAuth.currentUser != null) {
+                val profilePic: Uri? = firebaseAuth.currentUser!!.photoUrl
+                val name = firebaseAuth.currentUser!!.displayName!!
+                if (user_editText.text.toString().isNotEmpty() && downloadedUrl == null) {
+                    val a = ImpulseWallModel(profilePic.toString(), name, "", user_editText.text.toString().trim())
+                    databaseReference.push().setValue(a)
+                    user_message_send_fab.isEnabled = false
+                    user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
 
-            } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.toString().trim().isEmpty()) {
-                val a = ImpulseWallModel("", "AMAN", downloadedUrl.toString(), "")
-                databaseReference.push().setValue(a)
-                downloadedUrl = null
-                attachment.visibility = View.GONE
-                Toast.makeText(this@ImpulseWallActivity, "second", Toast.LENGTH_SHORT).show()
-                user_message_send_fab.isEnabled = false
-                user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
+                } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.toString().trim().isEmpty()) {
+                    val a = ImpulseWallModel(profilePic.toString(), name, downloadedUrl.toString(), "")
+                    databaseReference.push().setValue(a)
+                    downloadedUrl = null
+                    attachment.visibility = View.GONE
+                    user_message_send_fab.isEnabled = false
+                    user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
 
-            } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.isNotEmpty()) {
-                val a = ImpulseWallModel("", "AMAN", downloadedUrl.toString(), user_editText.text.toString().trim())
-                databaseReference.push().setValue(a)
-                downloadedUrl = null
-                attachment.visibility = View.GONE
-                Toast.makeText(this@ImpulseWallActivity, "third", Toast.LENGTH_SHORT).show()
-                user_message_send_fab.isEnabled = false
-                user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
-
+                } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.isNotEmpty()) {
+                    val a = ImpulseWallModel(profilePic.toString(), name, downloadedUrl.toString(), user_editText.text.toString().trim())
+                    databaseReference.push().setValue(a)
+                    downloadedUrl = null
+                    attachment.visibility = View.GONE
+                    user_message_send_fab.isEnabled = false
+                    user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
+                } else {
+                    Toast.makeText(this@ImpulseWallActivity, "nope", Toast.LENGTH_SHORT).show()
+                }
+                recyclerView_impulse_wall.scrollToPosition(recyclerView_impulse_wall.adapter.itemCount - 1)
+                user_editText.setText("")
+                val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(this@ImpulseWallActivity.currentFocus.windowToken, 0)
             } else {
-                Toast.makeText(this@ImpulseWallActivity, "nope", Toast.LENGTH_SHORT).show()
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setAvailableProviders(Arrays.asList(
+                                        AuthUI.IdpConfig.EmailBuilder().build(),
+                                        AuthUI.IdpConfig.GoogleBuilder().build()))
+                                .build(),
+                        RC_SIGN_IN)
             }
-            user_editText.setText("")
-            val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(this@ImpulseWallActivity.currentFocus.windowToken, 0)
         })
     }
 
@@ -206,7 +228,7 @@ class ImpulseWallActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 
-            resampleBitmap = Compressor(this).compressToBitmap(File(mTempPhotoPath))
+            val resampleBitmap = Compressor(this).compressToBitmap(File(mTempPhotoPath))
             val savedImagePath: String = BitmapUtils.saveImage(this@ImpulseWallActivity, resampleBitmap)
             uploadTaskForCamera(savedImagePath)
 
@@ -226,14 +248,16 @@ class ImpulseWallActivity : AppCompatActivity() {
             }
             val savedImagePath: String = BitmapUtils.saveImage(this@ImpulseWallActivity, resampleBitmap)
             uploadTaskForCamera(savedImagePath)
+        } else if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
+            Glide.with(this).load(firebaseAuth.currentUser!!.photoUrl).into(user_profile_pic)
+            Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show()
+
         } else {
-            Toast.makeText(this@ImpulseWallActivity, "no photo", Toast.LENGTH_SHORT).show()
         }
     }
 
 
     private fun uploadTaskForCamera(savedImagePath: String) {
-       attachment.visibility = View.VISIBLE
         val file = File(savedImagePath)
         val stream = FileInputStream(file)
         Toast.makeText(this@ImpulseWallActivity, "upload in progress", Toast.LENGTH_SHORT).show()
@@ -241,6 +265,7 @@ class ImpulseWallActivity : AppCompatActivity() {
                 .addOnSuccessListener(this) { p0 ->
                     downloadedUrl = p0?.downloadUrl
                     Toast.makeText(this@ImpulseWallActivity, "Image upload success", Toast.LENGTH_SHORT).show()
+                    attachment.visibility = View.VISIBLE
                     user_message_send_fab.isEnabled = true
                     user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
 
@@ -267,6 +292,7 @@ class ImpulseWallActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().reference.child("impulseWall")
         storage = FirebaseStorage.getInstance()
         storageReference = storage.reference
+        firebaseAuth = FirebaseAuth.getInstance()
     }
 
     private fun setupRecyclerViewAdatpter() {
@@ -327,4 +353,8 @@ class ImpulseWallActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        downloadedUrl = null
+    }
 }
