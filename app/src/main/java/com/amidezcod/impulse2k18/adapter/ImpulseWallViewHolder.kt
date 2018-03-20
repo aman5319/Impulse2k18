@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.amidezcod.impulse2k18.modal.ImpulseWallModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
+import com.bumptech.glide.request.RequestOptions
 import impulse2k18.R
 
 /**
@@ -29,9 +30,10 @@ class ImpulseWallViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         if (impulseWallModel.ProfilePic.isNotEmpty()) {
             Glide.with(itemView.context)
                     .load(impulseWallModel.ProfilePic)
+                    .apply(RequestOptions.circleCropTransform())
                     .into(userImage)
         } else {
-            userImage.setImageResource(R.drawable.impulse_logo)
+            userImage.setImageResource(R.drawable.aboutus)
         }
         if (impulseWallModel.uploadedPhoto.isNotEmpty()) {
             userUploadedImage.visibility = View.VISIBLE

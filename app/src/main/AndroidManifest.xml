@@ -61,6 +61,7 @@
             android:theme="@style/schedule" />
         <activity android:name="com.amidezcod.impulse2k18.activity.LocationActivity"/>
         <activity
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:name="com.amidezcod.impulse2k18.activity.ImpulseWallActivity"
             android:parentActivityName="com.amidezcod.impulse2k18.activity.BubblePickerActivity"
             android:theme="@style/AppTheme" />

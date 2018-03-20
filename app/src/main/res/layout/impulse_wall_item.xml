@@ -18,6 +18,7 @@
         tools:src="@drawable/bubble_background" />
 
     <TextView
+        android:fontFamily="@font/oxygen_bold"
         android:id="@+id/textView_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,22 +48,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/oxygen_regular"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_photo_upload"
         tools:text="this is a test message send by the developer to a developer
-this is a test message send by the developer to a developer
 this is a test message send by the developer to a developerthis is a test message send by the developer to a developer" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#7c414141"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_text"
-        android:layout_marginBottom="16dp"
-        />
+
 </android.support.constraint.ConstraintLayout>

@@ -2,8 +2,10 @@ package com.amidezcod.impulse2k18.activity
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -13,9 +15,15 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.amidezcod.impulse2k18.BitmapUtils
 import com.amidezcod.impulse2k18.adapter.ImpulseWallViewHolder
@@ -56,7 +64,36 @@ class ImpulseWallActivity : AppCompatActivity() {
         setupPhotoPicker()
         setUpCamera()
         sendToFirebase()
+        disableEnableFab()
     }
+
+    private fun disableEnableFab() {
+        user_message_send_fab.isEnabled = false
+        user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
+        user_editText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (downloadedUrl == null) {
+                    user_message_send_fab.isEnabled = s.toString().trim().isNotEmpty()
+                    if (s.toString().trim().isNotEmpty())
+                        user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
+                    else
+                        user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
+                } else {
+                    user_message_send_fab.isEnabled = true
+                    user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
+                }
+            }
+
+        })
+    }
+
 
     private fun sendToFirebase() {
         user_message_send_fab.setOnClickListener({
@@ -64,21 +101,33 @@ class ImpulseWallActivity : AppCompatActivity() {
                 val a = ImpulseWallModel("", "AMAN", "", user_editText.text.toString().trim())
                 databaseReference.push().setValue(a)
                 Toast.makeText(this@ImpulseWallActivity, "first", Toast.LENGTH_SHORT).show()
+                user_message_send_fab.isEnabled = false
+                user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
+
             } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.toString().trim().isEmpty()) {
                 val a = ImpulseWallModel("", "AMAN", downloadedUrl.toString(), "")
                 databaseReference.push().setValue(a)
                 downloadedUrl = null
+                attachment.visibility = View.GONE
                 Toast.makeText(this@ImpulseWallActivity, "second", Toast.LENGTH_SHORT).show()
+                user_message_send_fab.isEnabled = false
+                user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
 
             } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.isNotEmpty()) {
                 val a = ImpulseWallModel("", "AMAN", downloadedUrl.toString(), user_editText.text.toString().trim())
                 databaseReference.push().setValue(a)
                 downloadedUrl = null
+                attachment.visibility = View.GONE
                 Toast.makeText(this@ImpulseWallActivity, "third", Toast.LENGTH_SHORT).show()
+                user_message_send_fab.isEnabled = false
+                user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
 
             } else {
                 Toast.makeText(this@ImpulseWallActivity, "nope", Toast.LENGTH_SHORT).show()
             }
+            user_editText.setText("")
+            val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(this@ImpulseWallActivity.currentFocus.windowToken, 0)
         })
     }
 
@@ -184,15 +233,24 @@ class ImpulseWallActivity : AppCompatActivity() {
 
 
     private fun uploadTaskForCamera(savedImagePath: String) {
+       attachment.visibility = View.VISIBLE
         val file = File(savedImagePath)
         val stream = FileInputStream(file)
-        Toast.makeText(this@ImpulseWallActivity, "upload", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@ImpulseWallActivity, "upload in progress", Toast.LENGTH_SHORT).show()
         storageReference.child(Uri.fromFile(file).lastPathSegment).putStream(stream)
                 .addOnSuccessListener(this) { p0 ->
                     downloadedUrl = p0?.downloadUrl
-                    Toast.makeText(this@ImpulseWallActivity, "upload succ", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ImpulseWallActivity, "Image upload success", Toast.LENGTH_SHORT).show()
+                    user_message_send_fab.isEnabled = true
+                    user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
+
                 }
-                .addOnFailureListener(this) { p0 -> p0.printStackTrace() }
+                .addOnFailureListener(this) { p0 ->
+                    p0.printStackTrace()
+                    user_message_send_fab.isEnabled = true
+                    user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
+
+                }
     }
 
 
@@ -254,6 +312,10 @@ class ImpulseWallActivity : AppCompatActivity() {
         recyclerView_impulse_wall.setHasFixedSize(true)
         recyclerView_impulse_wall.layoutManager = LinearLayoutManager(this@ImpulseWallActivity
                 , LinearLayoutManager.VERTICAL, false)
+        val dividerItemDecoration = DividerItemDecoration(this,
+                LinearLayoutManager.VERTICAL)
+        recyclerView_impulse_wall.addItemDecoration(dividerItemDecoration)
+        recyclerView_impulse_wall.itemAnimator = DefaultItemAnimator()
     }
 
     private fun setupToolbar() {
