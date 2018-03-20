@@ -19,6 +19,8 @@ class ImpulseWallViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
     val userUploadedImage: ImageView = itemView.findViewById(R.id.imageView_photo_upload)
     val username: TextView = itemView.findViewById(R.id.textView_profile_name)
     private val usertext: TextView = itemView.findViewById(R.id.textView_text)
+    private val timeText: TextView = itemView.findViewById(R.id.time_wall)
+    private val dateText: TextView = itemView.findViewById(R.id.date_wall)
 
     fun bind(impulseWallModel: ImpulseWallModel) {
         username.text = impulseWallModel.profileName
@@ -47,6 +49,7 @@ class ImpulseWallViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         } else {
             userUploadedImage.visibility = View.GONE
         }
-
+        timeText.text = impulseWallModel.timeText
+        dateText.text = impulseWallModel.dateText
     }
 }

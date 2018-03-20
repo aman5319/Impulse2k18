@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Registration"
 
-        val eventName = intent.getStringExtra("EventName").substringAfter("#", "")
+        val eventName = intent.getStringExtra("EventName").substringAfter("#", "ಅಭ್ಯುದಯ")
         register_event.text = eventName
         if (FirebaseDatabase.getInstance() == null)
             FirebaseDatabase.getInstance().setPersistenceEnabled(true)

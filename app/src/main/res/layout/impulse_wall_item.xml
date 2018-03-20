@@ -59,7 +59,25 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView_photo_upload"
         tools:text="this isdeveloper" />
 
+    <TextView
+        android:id="@+id/time_wall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="4:20 am"
+        app:layout_constraintBottom_toTopOf="@+id/date_wall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/date_wall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:text="22 March"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_photo_upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_wall" />
 
 
 </android.support.constraint.ConstraintLayout>

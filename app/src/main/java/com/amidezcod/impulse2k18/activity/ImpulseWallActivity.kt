@@ -41,6 +41,7 @@ import impulse2k18.R
 import kotlinx.android.synthetic.main.activity_impulse_wall.*
 import java.io.File
 import java.io.FileInputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -48,7 +49,6 @@ class ImpulseWallActivity : AppCompatActivity() {
 
     lateinit var firebaseRecyclerAdapter: FirebaseRecyclerAdapter<ImpulseWallModel, ImpulseWallViewHolder>
     lateinit var databaseReference: DatabaseReference
-    private lateinit var firebaseStorage: FirebaseStorage
     private lateinit var mTempPhotoPath: String
     private lateinit var storage: FirebaseStorage
     private lateinit var storageReference: StorageReference
@@ -110,16 +110,20 @@ class ImpulseWallActivity : AppCompatActivity() {
     private fun sendToFirebase() {
         user_message_send_fab.setOnClickListener({
             if (firebaseAuth.currentUser != null) {
+                val date = Date()
+                val simpletimeFormatter = SimpleDateFormat("h:m a", Locale.getDefault()).format(date)
+                val simpleDateFormat = SimpleDateFormat("d LLL", Locale.getDefault()).format(date)
+
                 val profilePic: Uri? = firebaseAuth.currentUser!!.photoUrl
                 val name = firebaseAuth.currentUser!!.displayName!!
                 if (user_editText.text.toString().isNotEmpty() && downloadedUrl == null) {
-                    val a = ImpulseWallModel(profilePic.toString(), name, "", user_editText.text.toString().trim())
+                    val a = ImpulseWallModel(profilePic.toString(), name, "", user_editText.text.toString().trim(),simpletimeFormatter , simpleDateFormat)
                     databaseReference.push().setValue(a)
                     user_message_send_fab.isEnabled = false
                     user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
 
                 } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.toString().trim().isEmpty()) {
-                    val a = ImpulseWallModel(profilePic.toString(), name, downloadedUrl.toString(), "")
+                    val a = ImpulseWallModel(profilePic.toString(), name, downloadedUrl.toString(), "",simpletimeFormatter , simpleDateFormat)
                     databaseReference.push().setValue(a)
                     downloadedUrl = null
                     attachment.visibility = View.GONE
@@ -127,7 +131,7 @@ class ImpulseWallActivity : AppCompatActivity() {
                     user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, android.R.color.holo_red_dark))
 
                 } else if (downloadedUrl != null && downloadedUrl.toString().isNotEmpty() && user_editText.text.isNotEmpty()) {
-                    val a = ImpulseWallModel(profilePic.toString(), name, downloadedUrl.toString(), user_editText.text.toString().trim())
+                    val a = ImpulseWallModel(profilePic.toString(), name, downloadedUrl.toString(), user_editText.text.toString().trim(),simpletimeFormatter , simpleDateFormat)
                     databaseReference.push().setValue(a)
                     downloadedUrl = null
                     attachment.visibility = View.GONE
@@ -330,6 +334,7 @@ class ImpulseWallActivity : AppCompatActivity() {
                         .build()
         firebaseRecyclerAdapter =
                 object : FirebaseRecyclerAdapter<ImpulseWallModel, ImpulseWallViewHolder>(firebaseRecyclerOptions) {
+
                     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ImpulseWallViewHolder {
                         return ImpulseWallViewHolder(LayoutInflater.from(this@ImpulseWallActivity).inflate(R.layout.impulse_wall_item, parent, false))
                     }

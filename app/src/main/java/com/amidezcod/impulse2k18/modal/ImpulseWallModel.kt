@@ -7,5 +7,7 @@ data class ImpulseWallModel(
         var ProfilePic: String = "",
         var profileName: String = "",
         var uploadedPhoto: String = "",
-        var writterText: String = ""
+        var writterText: String = "",
+        var timeText: String = "",
+        var dateText: String = ""
 )

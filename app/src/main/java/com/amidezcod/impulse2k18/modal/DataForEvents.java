@@ -28,7 +28,6 @@ public class DataForEvents {
                         "\t\t>>  5 Members in a team.\n" +
                         "\t\t>>  1st round.\n" +
                         "\t\t>>  The winners of the 1st round\n\t\t\t\t\twill advance to elimination round.\n" +
-                        "\t\t>>  Final round will be a circuit of 3 laps.\n" +
                         "\t\t>>  Entry Fee: Rs. 250/- per team.\n" +
                         "\n3. FIFA (open) :\n\n" +
                         "\t\t>>  1 Player per team.\n" +
@@ -144,17 +143,6 @@ public class DataForEvents {
                         new String[]{"Pavan reddy +918123857730"
                                 , "Shrinidhi bhat +918550079322"}
                 )));
-        mCardAdapter.addCardItem(new CardItem(
-                R.drawable.sae, "#SAE", "Showcase your Design and Technical skills",
-                new EventDetailsInfo(" A platform to display the projects designed by the  prodigies and enable them to connect and interact to the international and national companies to be present on the day of event to showcase their technical skills and present it to the SAE judges and a wide range of audience.",
-                        ">>  10-15 members in a team\n" +
-                                ">>  Should have participated in national or international competition\n" +
-                                ">>  Documents assisting the participation in any previous competition shloud be carried along \n" +
-                                ">>  Briefing of technical and aesthetic specification should be done\n" +
-                                ">>  Based on the model and year of participation,the appearing model will be judged accordingly\n" +
-                                ">>  Stalls will be provided,need to present 15 min prior to start of the event \n"
-                        , "1000/- per Team", "Attractive cash prize", "The Oxford College of Engineering",
-                        new String[]{"prathap +919886061125", "Trilochan +919986706069"})));
 
         mCardAdapter.addCardItem(
                 new CardItem(R.drawable.unknownit, "#Un-KnowIT", "Unlocking Knowledge at the speed of thought", new EventDetailsInfo(
@@ -167,7 +155,7 @@ public class DataForEvents {
                         ">>  audience are not allowed to give any hints or clues to the competitors\n" +
                         ">>  Replacemant of any participant of a team is not allowed after registration.\n" +
                         ">>  teams selected for the stage rounds will be allowed to give themselves on appropriate name related to the competetion by which they may want to be known.\n" +
-                        ">>  10 marks awarded for right answers.\n" + ">>  Team of 3 is required"
+                        ">>  10 marks awarded for right answers.\n"
                         , "100/- per team", "Attractive cash prize", "6th floor Seminar Hall", new String[]{
                         "Srinivas +918095886960",
                         "Albert +919585959400"}
@@ -312,9 +300,10 @@ public class DataForEvents {
                         ">> Duration of the short film should not be less than 5 minutes and more than 10 minutes. \n" +
                         ">> Major raw shots used to make the final movie should be submitted along with the final film copy. \n" +
                         ">> Each Short Film should depict its title and credits.\n" +
+                        ">> Also you can add Pre-Shorted film made before 3 months\n" +
                         ">> The Best short Films will be selected and screened during the event.\n" +
                         ">> Out of the selected movies the Jury will select the top 5 films and cash prizes will be awarded and decisions of the Juries will be final."
-                , "250/- per team", "Attractive cash prize", "3rd Floor seminar hall ", new String[]{
+                , "250/- per team", "Attractive cash prize", "5th Floor seminar hall ", new String[]{
                 "Manoj +918050402005",
                 "Ashwin +919035811476"})));
         mCardAdapter.addCardItem(new CardItem(R.drawable.technovation, "#Technovation", "Our biggest problem is that we assume someone else wiil do ", new EventDetailsInfo(
@@ -322,7 +311,7 @@ public class DataForEvents {
                 ">> A team comprises of two members .\n" +
                         ">> Each. team should present their innovative project/concept idea.\n" +
                         ">> The time limit will be 10 min (8 min. for presentation and 2 min for disscussion)\n" +
-                        ">> The project/concept stream -TECHNOLOGY FOR SUSTAINABLE ENVIROMENT\n" +
+                        ">> The project/concept stream can be from any field of engineering\n" +
                         ">> The Judge will select the best two ideas and cash prizes will be awarded and decision of the Judges will be final",
                 "100/- per person", "Attractive cash prize", "3rd floor seminar hall", new String[]{
                 "Manoj +918050402005",

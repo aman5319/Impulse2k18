@@ -31,33 +31,35 @@ class ScheduleActivity : AppCompatActivity() {
 
 
         val eventItemListDay1: ArrayList<EventItem> = arrayListOf(
+                EventItem("Impulse Inauguration", "6th floor seminar hall new Building", "9am-11am"),
                 EventItem("Gaming(Mini Militia)", "N-313,314 Cse Dept.", "11am-4pm"),
                 EventItem("Gaming(FIFA)", "Spdp lab Cse Dept.", "11am-4pm"),
                 EventItem("Gaming(CS)", "Spdp lab Cse Dept.", "11am-4pm"),
                 EventItem("Gaming(NFS)", "Spdp lab Cse Dept.", "11am-4pm"),
                 EventItem("GearUp", "IV Floor ISE Seminar Hall New Building", "11am-4pm"),
-                EventItem("WheelsOnFire", "Compound Ground", "11am-4pm"),
+                EventItem("WheelsOnFire", "Play Ground", "11am-4pm"),
                 EventItem("TechnoVation", "3rd Floor seminar Hall", "11am-2pm"),
-                EventItem("MockPress", "6th floor Seminar Hall", "2pm-4pm"),
+                EventItem("MockPress", "6th floor Seminar Hall", "1:30pm-4pm"),
                 EventItem("Un-KnowIT", "6th floor Seminar Hall", "11am-1pm"),
-                EventItem("PaperPlane", "2nd floor Drawing floor New Building", "2pm"),
-                EventItem("Montage", "II Floor Drawing Hall", "11am-12:30pm"),
-                EventItem("HotWheels", "Auto Engg Lab", "11am-3pm"),
+                EventItem("PaperPlane", "2nd floor Drawing hall New Building", "1:30pm-4:00pm"),
+                EventItem("Montage", "II Floor Drawing Hall", "11am-1pm"),
+                EventItem("HotWheels", "Automobile Lab", "11am-3pm"),
                 EventItem("DevilSegue", "PSS Lab 5th Floor new Building", "12pm-3pm"),
-                EventItem("OxfordRoadies", "Old Building Ground Floor\n606 old building", "11am-1pm\n2pm-5pm"),
-                EventItem("WebDesigning", "MCA Lab 7th floor new Building", "11pm-4pm", isLastItem = true))
+                EventItem("OxfordRoadies", "Old Building Ground Floor\n606 old building", "11am-1pm\n1:30pm-5pm"),
+                EventItem("WebDesigning", "MCA Lab 6th floor new Building", "11pm-4pm", isLastItem = true))
         val eventItemListDay2: ArrayList<EventItem> = arrayListOf(
                 EventItem("Gaming(FIFA)", "Spdp lab Cse Dept.", "9am-4pm"),
                 EventItem("Gaming(CS)", "Spdp lab Cse Dept.", "9am-4pm"),
                 EventItem("Gaming(NFS)", "Spdp lab Cse Dept.", "9am-4pm"),
-                EventItem("StarOfImpulse", "6th floor seminar new Building", "1pm-4pm"),
+                EventItem("StarOfImpulse(prelim)", "N-602 new Building", "11pm-1pm"),
+                EventItem("StarOfImpulse", "6th floor seminar new Building", "1:30pm-4pm"),
                 EventItem("ಅಭ್ಯುದಯ", "6th floor seminar new Building", "9:30am-1pm"),
-                EventItem("PicturesQue", "IV Floor ISE Seminar Hall new Building", "10am-4pm"),
-                EventItem("Techno-Opus", "7th floor Aryabatta hall new Building", "9am-4pm"),
-                EventItem("RollCameraAction", "3rd floor seminar", "1pm-4pm"),
-                EventItem("Construct", "II Floor Drawing Hall", "9.30am-12.30pm"),
-                EventItem("Roboventure", "Footpath near Workshop", "1pm-3pm"),
-                EventItem("TreasureHunt", "MCA Seminar Hall", "9.30am-1pm", isLastItem = true)
+                EventItem("PicturesQue", "IV Floor ISE Seminar Hall new Building", "9am-4pm"),
+                EventItem("Techno-Opus", "7th floor Aryabatta hall new Building", "9am-1pm"),
+                EventItem("RollCameraAction", "5th floor seminar hall new Building", "1:30pm-4pm"),
+                EventItem("Construct", "II Floor Drawing Hall", "9am-1pm"),
+                EventItem("Roboventure", "Footpath near Workshop", "1:30pm-4pm"),
+                EventItem("TreasureHunt", "MCA Seminar Hall", "9am-1pm", isLastItem = true)
 
         )
         var roomDatabase: MyDatabase? = null
