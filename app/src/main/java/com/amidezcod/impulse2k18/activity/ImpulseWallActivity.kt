@@ -15,7 +15,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
@@ -33,7 +32,6 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -68,8 +66,10 @@ class ImpulseWallActivity : AppCompatActivity() {
         setupFirebase()
         setupRecyclerView()
         setupRecyclerViewAdatpter()
+
         setupPhotoPicker()
         setUpCamera()
+
         sendToFirebase()
         if (firebaseAuth.currentUser != null)
             Glide.with(this).load(firebaseAuth.currentUser!!.photoUrl).into(user_profile_pic)
@@ -136,10 +136,12 @@ class ImpulseWallActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this@ImpulseWallActivity, "nope", Toast.LENGTH_SHORT).show()
                 }
-                recyclerView_impulse_wall.scrollToPosition(recyclerView_impulse_wall.adapter.itemCount - 1)
                 user_editText.setText("")
                 val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(this@ImpulseWallActivity.currentFocus.windowToken, 0)
+                recyclerView_impulse_wall.smoothScrollToPosition(recyclerView_impulse_wall.adapter.itemCount + 1)
+                Glide.with(this).load(firebaseAuth.currentUser!!.photoUrl).into(user_profile_pic)
+
             } else {
                 startActivityForResult(
                         AuthUI.getInstance()
@@ -154,19 +156,31 @@ class ImpulseWallActivity : AppCompatActivity() {
     }
 
     private fun setUpCamera() {
-        camera.setOnClickListener {
-            // Check for the external storage permission
-            if (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
+        cameraLayoyut.setOnClickListener {
+            if (firebaseAuth.currentUser != null) {
 
-                // If you do not have permission, request it
-                ActivityCompat.requestPermissions(this,
-                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        REQUEST_STORAGE_PERMISSION)
+                // Check for the external storage permission
+                if (ContextCompat.checkSelfPermission(this,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+
+                    // If you do not have permission, request it
+                    ActivityCompat.requestPermissions(this,
+                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                            REQUEST_STORAGE_PERMISSION)
+                } else {
+                    // Launch the camera if the permission exists
+                    launchCamera()
+                }
             } else {
-                // Launch the camera if the permission exists
-                launchCamera()
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setAvailableProviders(Arrays.asList(
+                                        AuthUI.IdpConfig.EmailBuilder().build(),
+                                        AuthUI.IdpConfig.GoogleBuilder().build()))
+                                .build(),
+                        RC_SIGN_IN)
             }
         }
     }
@@ -251,7 +265,6 @@ class ImpulseWallActivity : AppCompatActivity() {
         } else if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
             Glide.with(this).load(firebaseAuth.currentUser!!.photoUrl).into(user_profile_pic)
             Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show()
-
         } else {
         }
     }
@@ -268,7 +281,7 @@ class ImpulseWallActivity : AppCompatActivity() {
                     attachment.visibility = View.VISIBLE
                     user_message_send_fab.isEnabled = true
                     user_message_send_fab.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this@ImpulseWallActivity, R.color.colorAccent))
-
+                    Glide.with(this).load(file).into(user_profile_pic)
                 }
                 .addOnFailureListener(this) { p0 ->
                     p0.printStackTrace()
@@ -280,11 +293,23 @@ class ImpulseWallActivity : AppCompatActivity() {
 
 
     private fun setupPhotoPicker() {
-        image_picker.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
-            startActivityForResult(Intent.createChooser(intent, "Choose a photo"), RC_PHOTO_PICKER_REQUEST)
+        photo_picker_layout.setOnClickListener {
+            if (firebaseAuth.currentUser != null) {
+
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+                startActivityForResult(Intent.createChooser(intent, "Choose a photo"), RC_PHOTO_PICKER_REQUEST)
+            } else {
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setAvailableProviders(Arrays.asList(
+                                        AuthUI.IdpConfig.EmailBuilder().build(),
+                                        AuthUI.IdpConfig.GoogleBuilder().build()))
+                                .build(),
+                        RC_SIGN_IN)
+            }
         }
     }
 
@@ -300,18 +325,11 @@ class ImpulseWallActivity : AppCompatActivity() {
                 FirebaseRecyclerOptions
                         .Builder<ImpulseWallModel>()
                         .setQuery(databaseReference
-                                .limitToLast(50), ImpulseWallModel::class.java)
+                                .limitToFirst(1000)
+                                , ImpulseWallModel::class.java)
                         .build()
         firebaseRecyclerAdapter =
                 object : FirebaseRecyclerAdapter<ImpulseWallModel, ImpulseWallViewHolder>(firebaseRecyclerOptions) {
-                    override fun onDataChanged() {
-                        super.onDataChanged()
-                    }
-
-                    override fun onError(error: DatabaseError) {
-                        super.onError(error)
-                    }
-
                     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ImpulseWallViewHolder {
                         return ImpulseWallViewHolder(LayoutInflater.from(this@ImpulseWallActivity).inflate(R.layout.impulse_wall_item, parent, false))
                     }
@@ -322,6 +340,7 @@ class ImpulseWallActivity : AppCompatActivity() {
 
                 }
         recyclerView_impulse_wall.adapter = firebaseRecyclerAdapter
+
     }
 
     override fun onStart() {
@@ -336,18 +355,19 @@ class ImpulseWallActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         recyclerView_impulse_wall.setHasFixedSize(true)
-        recyclerView_impulse_wall.layoutManager = LinearLayoutManager(this@ImpulseWallActivity
-                , LinearLayoutManager.VERTICAL, false)
+        val linear = LinearLayoutManager(this@ImpulseWallActivity
+                , LinearLayoutManager.VERTICAL, true)
+        linear.stackFromEnd = true
+        recyclerView_impulse_wall.layoutManager = linear
         val dividerItemDecoration = DividerItemDecoration(this,
                 LinearLayoutManager.VERTICAL)
         recyclerView_impulse_wall.addItemDecoration(dividerItemDecoration)
-        recyclerView_impulse_wall.itemAnimator = DefaultItemAnimator()
     }
 
     private fun setupToolbar() {
         setSupportActionBar(impulse_wall_toolbar)
         supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(false)
+            setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
 

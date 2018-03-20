@@ -37,6 +37,8 @@
     <string name="visit_our_website">Visit our Website</string>
     <string name="impulse_wall">Impulse Wall</string>
     <string name="what_s_in_your_mind">What\'s in your mind</string>
+    <string name="photo">Photo</string>
+    <string name="camera">Camera</string>
 
 
 </resources>
